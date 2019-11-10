@@ -8,10 +8,22 @@ public class Cancion {
 				   genero,
 				   URL,
 				   img;
+	
 	public Cancion(String titulo) {
 		this.titulo = titulo;
 	}
 	
+	public Cancion(int id, int duracion, LinkedList<String> artista, String titulo, String genero, String uRL,String img) {
+		super();
+		this.id = id;
+		this.duracion = duracion;
+		this.artista = artista;
+		this.titulo = titulo;
+		this.genero = genero;
+		URL = uRL;
+		this.img = img;
+	}
+
 	public int getId() {
 		return id;
 	}

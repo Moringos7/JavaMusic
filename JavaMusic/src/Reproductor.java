@@ -79,19 +79,23 @@ public class Reproductor extends Thread {
   ///Metodo de hilo
     public void run() {
     	this.play();
-    	while(this.sound.isOpen()) {
-    		if(pause) {
-    			pause();
-    		}
-    		try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+    	while(!this.cola.isEmpty()) {
+    		while(this.sound.isOpen()) {
+        		if(pause) {
+        			pause();
+        		}
+        		try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+        	}
+    		if(!this.cola.isEmpty()) {
+        		prepareSong(cola.poll().getTitulo());
+        	}
     	}
-    	if(!this.cola.isEmpty()) {
-    		prepareSong(cola.poll().getTitulo());
-    	}
+    	
+    	
     }
     public void play(){
         this.sound.start();

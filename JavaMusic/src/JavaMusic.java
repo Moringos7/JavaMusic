@@ -10,7 +10,7 @@ import java.util.Queue;
 public class JavaMusic {
 	private Playlist listaFavoritos;
 	private Playlist listaNegados;
-	//private Reproductor reproductor;
+	private Reproductor reproductor;
 	private Hashtable<String,Artista>artistas;
 	private Hashtable<String,Album>albumes;
 	private Hashtable<String, Genero>generos;

@@ -1,17 +1,7 @@
 import java.util.LinkedList;
 
 public class Cancion {
-<<<<<<< HEAD
-	private String titulo,
-			       id,
-			       genero,
-			       URL;
-	private Artista artista;
-	private int duracion;
 
-	public Cancion() {
-	}
-=======
 	private int id,
 				duracion;
 	private LinkedList<String> artista;
@@ -77,6 +67,4 @@ public class Cancion {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	
->>>>>>> c1c6ab7b859303baba5158243bd72f63643a60ad
 }

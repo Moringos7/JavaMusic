@@ -19,8 +19,9 @@ public class JavaMusic {
 		try {
 			BufferedReader bf=new BufferedReader(new FileReader("playlist.txt"));
 			while(bf.readLine()!=null) {
-				while(!bf.readLine().equals("-")) {
-					//this.listaFavoritos.canciones.add()
+				String linea;
+				while(!(linea=bf.readLine()).equals("-")) {
+					//this.listaFavoritos.canciones.add(linea);
 				}
 			}
 		}catch(FileNotFoundException ex) {

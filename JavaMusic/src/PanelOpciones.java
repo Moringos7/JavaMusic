@@ -1,4 +1,5 @@
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,14 +11,19 @@ public class PanelOpciones extends JPanel{
 					btnArtistas,
 					btnPlaylists;
 	private JPanel panelGeneral;
-	public PanelOpciones(JPanel panelGeneral) {
+	private VentanaJavaMusic ventana;
+	private Font fuente;
+	public PanelOpciones(JPanel panelGeneral, VentanaJavaMusic ventana, Font fuente) {
 		super();
 		this.panelGeneral=panelGeneral;
+		this.ventana=ventana;
 		this.setPreferredSize(new Dimension(150,650));
 		this.btnInicio=new JButton("Inicio");
 		this.btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				ventana.getContentPane().remove(panelGeneral);
+				ventana.getContentPane().add(new PanelInicio(fuente));
+				ventana.validate();
 			}
 		});
 		this.btnAlbumes=new JButton("Albumes");

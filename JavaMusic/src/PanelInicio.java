@@ -17,9 +17,11 @@ public class PanelInicio extends JPanel {
 	private JButton btnBuscar;
 	private Font bienvenida;
 	private JLabel labelBienvenida;
-	public PanelInicio() {
+	public PanelInicio(Font fuente) {
 		super();
 		this.setPreferredSize(new Dimension(1000,650));
+		this.setLayout(null);
+		this.setBackground(Color.BLACK);
 		this.tfbuscador=new JTextField(10);
 		this.btnBuscar=new JButton("Buscar");
 		this.btnBuscar.addActionListener(new ActionListener() {
@@ -28,27 +30,21 @@ public class PanelInicio extends JPanel {
 			}
 		});
 		
-		this.add(this.tfbuscador);
-		this.add(this.btnBuscar);
-		/*try {
-			this.bienvenida=Font.createFont(Font.TRUETYPE_FONT, new File("Computerfont.ttf")).deriveFont(60f);
-			GraphicsEnvironment ge= GraphicsEnvironment.getLocalGraphicsEnvironment();
-			ge.registerFont(bienvenida);
-		}catch(IOException ex) {
-			
-		}catch (FontFormatException ex) {
-			
-		}
+		this.bienvenida=fuente;
+	
 		this.labelBienvenida=new JLabel("Bienvenido a JavaMusic");
+		this.labelBienvenida.setFont(bienvenida);
 		this.labelBienvenida.setBackground(Color.BLUE);
 		this.labelBienvenida.setForeground(Color.WHITE);
-		this.labelBienvenida.setFont(bienvenida);
-		this.add(labelBienvenida);*/
+		this.tfbuscador.setBounds(200, 20, 200, 30);
+		this.btnBuscar.setBounds(410, 20, 100, 30);
+		this.labelBienvenida.setBounds(75, 50,800,200);
+		this.add(this.tfbuscador);
+		this.add(this.btnBuscar);
+		this.add(labelBienvenida);
 		
 	}
 	public void paintComponent(Graphics g) {
-		this.tfbuscador.setLocation(300, 100);
-		this.btnBuscar.setLocation(400, 100);
-		this.setBackground(Color.BLACK);
+		super.paintComponent(g);
 	}
-}
+}	

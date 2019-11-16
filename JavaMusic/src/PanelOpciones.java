@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 public class PanelOpciones extends JPanel{
 	private JButton btnInicio,
 					btnAlbumes,
@@ -21,9 +22,11 @@ public class PanelOpciones extends JPanel{
 		this.btnInicio=new JButton("Inicio");
 		this.btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ventana.getContentPane().remove(panelGeneral);
-				ventana.getContentPane().add(new PanelInicio(fuente));
-				ventana.validate();
+				PanelInicio nuevoPanel=new PanelInicio(fuente);
+				ventana.getContentPane().remove(ventana.getPanelGeneral());
+				ventana.setPanelGeneral(nuevoPanel);
+				ventana.getScroll().setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+				ventana.revalidate();
 			}
 		});
 		this.btnAlbumes=new JButton("Albumes");

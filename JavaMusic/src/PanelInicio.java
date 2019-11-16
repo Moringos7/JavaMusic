@@ -19,7 +19,7 @@ public class PanelInicio extends JPanel {
 	private JLabel labelBienvenida;
 	public PanelInicio(Font fuente) {
 		super();
-		this.setPreferredSize(new Dimension(1000,650));
+		this.setPreferredSize(new Dimension(1000,300));
 		this.setLayout(null);
 		this.setBackground(Color.BLACK);
 		this.tfbuscador=new JTextField(10);

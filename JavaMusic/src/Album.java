@@ -5,11 +5,11 @@ public class Album {
 				   Artista,
 				   Img;
 	
-	public Album(String id, String titulo, String nombreArtista, String img) {
-		Id = id;
-		Titulo = titulo;
-		Artista = Artista;
-		Img = img;
+	public Album(String id, String titulo, String Artista, String img) {
+		this.Id = id;
+		this.Titulo = titulo;
+		this.Artista = Artista;
+		this.Img = img;
 	}
 
 	public String getId() {
@@ -44,4 +44,8 @@ public class Album {
 		Img = img;
 	}
 	
+	@Override
+	public String toString() {
+		return "Album [Id=" + Id + ", Titulo=" + Titulo + ", Artista=" + Artista + ", Img=" + Img + "]";
+	}
 }

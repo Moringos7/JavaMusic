@@ -33,4 +33,8 @@ public class Artista {
 		Img = img;
 	}
 	
+	@Override
+	public String toString() {
+		return "Artista [Id=" + Id + ", Nombre=" + Nombre + ", Img=" + Img + "]";
+	}
 }

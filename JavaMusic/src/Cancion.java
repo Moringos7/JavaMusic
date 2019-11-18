@@ -50,4 +50,12 @@ public class Cancion {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+
+	@Override
+	public String toString() {
+		return "Cancion [duracion=" + duracion + ", id=" + id + ", titulo=" + titulo + ", artista=" + artista + ", img="
+				+ img + "]";
+	}
+	
+	
 }

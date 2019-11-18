@@ -33,5 +33,10 @@ public class Genero {
 	public void setImg(String img) {
 		Img = img;
 	}
+
+	@Override
+	public String toString() {
+		return "Genero [Id=" + Id + ", Nombre=" + Nombre + ", Img=" + Img + "]";
+	}
 	
 }

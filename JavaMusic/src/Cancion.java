@@ -2,33 +2,28 @@ import java.util.LinkedList;
 
 public class Cancion {
 
-	private int id,
-				duracion;
-	private LinkedList<String> artista;
-	private String titulo,
-				   genero,
-				   URL,
+	private int duracion;
+	private String id,
+				   titulo,
+				   artista,
 				   img;
-	
-	public Cancion(String titulo) {
+	public Cancion(String id) {
 		this.titulo = titulo;
 	}
 	
-	public Cancion(int id, int duracion, LinkedList<String> artista, String titulo, String genero, String uRL,String img) {
+	public Cancion(String id, int duracion, String  artista, String titulo, String genero, String uRL,String img) {
 		super();
 		this.id = id;
 		this.duracion = duracion;
 		this.artista = artista;
 		this.titulo = titulo;
-		this.genero = genero;
-		URL = uRL;
 		this.img = img;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public int getDuracion() {
@@ -37,23 +32,11 @@ public class Cancion {
 	public void setDuracion(int duracion) {
 		this.duracion = duracion;
 	}
-	public LinkedList<String> getArtista() {
+	public String getArtista() {
 		return artista;
 	}
-	public void setArtista(LinkedList<String> artista) {
+	public void setArtista(String artista) {
 		this.artista = artista;
-	}
-	public String getGenero() {
-		return genero;
-	}
-	public void setGenero(String genero) {
-		this.genero = genero;
-	}
-	public String getURL() {
-		return URL;
-	}
-	public void setURL(String uRL) {
-		URL = uRL;
 	}
 	public String getImg() {
 		return img;

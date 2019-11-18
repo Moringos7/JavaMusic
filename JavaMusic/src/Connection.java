@@ -51,6 +51,7 @@ public class Connection {
 				System.out.println(genero);
 			}
 		}*/
+		/*
 		Playlist<Cancion> canciones = null;
 		try {
 			canciones = conect.getCancionesGenero("2");
@@ -61,6 +62,15 @@ public class Connection {
 			while(song.hasNext()) {
 				System.out.println(song.next());
 			}
+		}*/
+		Cancion song = null;
+		try {
+			song = conect.getCancion("3");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			System.out.println(song);
 		}
 		
 	}
@@ -210,6 +220,32 @@ public class Connection {
 			in.close();
 		}
 		return canciones;
+	}
+	
+	public Cancion getCancion(String Id) throws IOException{
+		Cancion cancion = null;
+		URL obj = new URL(GET_URL + "Cancion.php?id="+Id);
+		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+		con.setRequestMethod("GET");
+		con.setRequestProperty("User-Agent", USER_AGENT);
+		int responseCode = con.getResponseCode();
+		if (responseCode == HttpURLConnection.HTTP_OK) { 
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					con.getInputStream()));
+			String inputLine;	
+			StringBuffer response = new StringBuffer();
+
+			if((inputLine = in.readLine()) != null) {
+				StringTokenizer tokens = new StringTokenizer(inputLine,"|");
+				cancion = new Cancion(tokens.nextToken(),
+									  tokens.nextToken(),
+									  Integer.parseInt(tokens.nextToken()),
+									  tokens.nextToken(),
+									  tokens.nextToken());
+			}
+			in.close();
+		}
+		return cancion;
 	}
 	
 	private static void sendGET() throws IOException {

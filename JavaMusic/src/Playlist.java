@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
@@ -56,11 +57,17 @@ public class Playlist<T> implements Iterable<T>{
 	}
 	
 	public static void main (String arg[]) {
-		
-		/*Iterator<Cancion> song = myPlaylist.iterator();
+		Playlist<Cancion> myPlaylist = null;
+		try {
+			myPlaylist = new Connection().getCancionesArtista("1");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Iterator<Cancion> song = myPlaylist.iterator();
 		while(song.hasNext()) {
 			System.out.println(song.next());
-		}*/
+		}
 	}
 	
 	public class NodoP<Cancion>{
@@ -121,7 +128,21 @@ public class Playlist<T> implements Iterable<T>{
 				}else {
 					throw new  IllegalStateException("No más elementos");
 				}
-			}			
+			}
+			public T previous() {
+				if(this.hasPrevious()) {
+					NodoP temp = current;
+					current = current.previous;
+					pos--;
+					return (T)temp.getCancion();
+				}else {
+					throw new  IllegalStateException("No más elementos");
+				}
+			}
+			
+			public boolean hasPrevious() {
+				return pos>0;
+			}
 		};
 	}
 

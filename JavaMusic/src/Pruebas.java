@@ -1,32 +1,53 @@
+import java.io.IOException;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Pruebas {
 	public static void main(String args[]) {
 		LinkedList<Cancion> canciones = new LinkedList<Cancion>();
-		canciones.add(new Cancion("1"));
-		canciones.add(new Cancion("11"));
-		canciones.add(new Cancion("20"));
+		Connection conect = new Connection();
+		Reproductor reproductor = null;
+		try {
+			reproductor = new Reproductor(conect.getCancionesArtista("1"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			reproductor.play();
+		}
+		try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+		reproductor.pause();
+		try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+		reproductor.play();
+		try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+		reproductor.nextSong();
+		try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+		reproductor.nextSong();
+		try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+		/*Iterator<Cancion> song = canciones.iterator();
+		while(song.hasNext()) {
+			System.out.println(song.next());
+		}*/
 		
-		Reproductor rep = new Reproductor(new Cancion("1"));
-		rep.start();
-		try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-		rep.pause();
-		try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-		rep.play();
-		try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-		rep.stopMusic();
-		rep.play();
+		
 	}
 }

@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException; 
 import java.net.URL;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
 
@@ -49,6 +50,30 @@ public class Connection {
 			for(Genero genero : Generos) {
 				System.out.println(genero);
 			}
+<<<<<<< HEAD
+=======
+		}*/
+		/*
+		Playlist<Cancion> canciones = null;
+		try {
+			canciones = conect.getCancionesGenero("2");
+		}catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			Iterator<Cancion> song = canciones.iterator();
+			while(song.hasNext()) {
+				System.out.println(song.next());
+			}
+		}*/
+		Cancion song = null;
+		try {
+			song = conect.getCancion("3");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			System.out.println(song);
+>>>>>>> 73adb3f4edc948be5b70fcf841673c9c5d8141f1
 		}
 		
 	}
@@ -120,6 +145,110 @@ public class Connection {
 			in.close();
 		}
 		return Generos;
+	}
+	
+	public Playlist<Cancion> getCancionesArtista(String Id) throws IOException{
+		Playlist<Cancion> canciones = new Playlist<Cancion>();
+		URL obj = new URL(GET_URL + "CancionesArtista.php?id="+Id);
+		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+		con.setRequestMethod("GET");
+		con.setRequestProperty("User-Agent", USER_AGENT);
+		int responseCode = con.getResponseCode();
+		if (responseCode == HttpURLConnection.HTTP_OK) { 
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					con.getInputStream()));
+			String inputLine;	
+			StringBuffer response = new StringBuffer();
+
+			while ((inputLine = in.readLine()) != null) {
+				StringTokenizer tokens = new StringTokenizer(inputLine,"|");
+				canciones.add(new Cancion(tokens.nextToken(),
+										  tokens.nextToken(),
+										  Integer.parseInt(tokens.nextToken()),
+										  tokens.nextToken(),
+										  tokens.nextToken()));
+			}
+			in.close();
+		}
+		return canciones;
+	}
+	
+	public Playlist<Cancion> getCancionesAlbum(String Id) throws IOException{
+		Playlist<Cancion> canciones = new Playlist<Cancion>();
+		URL obj = new URL(GET_URL + "CancionesAlbum.php?id="+Id);
+		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+		con.setRequestMethod("GET");
+		con.setRequestProperty("User-Agent", USER_AGENT);
+		int responseCode = con.getResponseCode();
+		if (responseCode == HttpURLConnection.HTTP_OK) { 
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					con.getInputStream()));
+			String inputLine;	
+			StringBuffer response = new StringBuffer();
+
+			while ((inputLine = in.readLine()) != null) {
+				StringTokenizer tokens = new StringTokenizer(inputLine,"|");
+				canciones.add(new Cancion(tokens.nextToken(),
+										  tokens.nextToken(),
+										  Integer.parseInt(tokens.nextToken()),
+										  tokens.nextToken(),
+										  tokens.nextToken()));
+			}
+			in.close();
+		}
+		return canciones;
+	}
+	
+	public Playlist<Cancion> getCancionesGenero(String Id) throws IOException{
+		Playlist<Cancion> canciones = new Playlist<Cancion>();
+		URL obj = new URL(GET_URL + "CancionesGenero.php?id="+Id);
+		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+		con.setRequestMethod("GET");
+		con.setRequestProperty("User-Agent", USER_AGENT);
+		int responseCode = con.getResponseCode();
+		if (responseCode == HttpURLConnection.HTTP_OK) { 
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					con.getInputStream()));
+			String inputLine;	
+			StringBuffer response = new StringBuffer();
+
+			while ((inputLine = in.readLine()) != null) {
+				StringTokenizer tokens = new StringTokenizer(inputLine,"|");
+				canciones.add(new Cancion(tokens.nextToken(),
+										  tokens.nextToken(),
+										  Integer.parseInt(tokens.nextToken()),
+										  tokens.nextToken(),
+										  tokens.nextToken()));
+			}
+			in.close();
+		}
+		return canciones;
+	}
+	
+	public Cancion getCancion(String Id) throws IOException{
+		Cancion cancion = null;
+		URL obj = new URL(GET_URL + "Cancion.php?id="+Id);
+		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+		con.setRequestMethod("GET");
+		con.setRequestProperty("User-Agent", USER_AGENT);
+		int responseCode = con.getResponseCode();
+		if (responseCode == HttpURLConnection.HTTP_OK) { 
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					con.getInputStream()));
+			String inputLine;	
+			StringBuffer response = new StringBuffer();
+
+			if((inputLine = in.readLine()) != null) {
+				StringTokenizer tokens = new StringTokenizer(inputLine,"|");
+				cancion = new Cancion(tokens.nextToken(),
+									  tokens.nextToken(),
+									  Integer.parseInt(tokens.nextToken()),
+									  tokens.nextToken(),
+									  tokens.nextToken());
+			}
+			in.close();
+		}
+		return cancion;
 	}
 	
 	private static void sendGET() throws IOException {

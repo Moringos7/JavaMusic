@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-11-2019 a las 21:12:48
+-- Tiempo de generación: 18-11-2019 a las 23:43:43
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -62,7 +62,7 @@ CREATE TABLE `artista` (
 INSERT INTO `artista` (`Id`, `Nombre`, `Img`) VALUES
 (1, 'Michael Jackson', 'img/A/michaeljackson.jpg'),
 (2, 'ACDC', 'img/A/acdc.jpg'),
-(3, 'David Garret', 'img/A/davidgarret.jpg');
+(3, 'David Garrett', 'img/A/davidgarrett.jpg');
 
 -- --------------------------------------------------------
 

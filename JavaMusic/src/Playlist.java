@@ -44,6 +44,9 @@ public class Playlist {
 		NodoP current = this.first;
 		while(!current.getCancion().getId().equals(Id)) {
 			current = current.getNext();
+			if(current.equals(null)) {
+				break;
+			}
 		}
 		return current.getCancion();
 	}
@@ -53,6 +56,7 @@ public class Playlist {
 		for(int i = 0; i<10;i++) {
 			myPlaylist.add(new Cancion(""+i));
 		}
+		System.out.println(myPlaylist.getCancion("3"));
 		
 	}
 	

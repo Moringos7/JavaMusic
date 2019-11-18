@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 public class VentanaJavaMusic extends JFrame {
 	private JPanel panelGeneral;
+	private JPanel panelActual;
 	private JavaMusic app;
 	private PanelOpciones po;
 	private Font fuente;
@@ -29,10 +30,11 @@ public class VentanaJavaMusic extends JFrame {
 		}catch (FontFormatException ex) {
 			ex.printStackTrace();
 		}
-		this.panelGeneral=new PanelAlbumes(this.fuente);
-
+		this.panelGeneral=new JPanel();
+		this.panelActual=new PanelInicio(this.fuente);
+		this.panelGeneral.add(this.panelActual);
 		this.add(panelGeneral);
-		this.add(new PanelOpciones(this.panelGeneral,this, this.fuente),BorderLayout.WEST);
+		this.add(new PanelOpciones(this.panelActual,this, this.fuente),BorderLayout.WEST);
 		this.scroll=new JScrollPane(this.panelGeneral);
 		this.scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		this.scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -44,9 +46,11 @@ public class VentanaJavaMusic extends JFrame {
 	public JScrollPane getScroll() {
 		return this.scroll;
 	}
-	public void setPanelGeneral(JPanel panelGeneral) {
-		this.panelGeneral=panelGeneral;
-		this.getContentPane().add(panelGeneral);
+	public void setPanelActual(JPanel panelActual) {
+		this.panelGeneral.remove(this.panelActual);
+		this.panelGeneral.add(panelActual);
+		this.panelActual=panelActual;
+		this.revalidate();
 	}
 	public JPanel getPanelGeneral() {
 		return this.panelGeneral;

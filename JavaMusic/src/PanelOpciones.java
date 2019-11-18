@@ -11,46 +11,54 @@ public class PanelOpciones extends JPanel{
 					btnAlbumes,
 					btnArtistas,
 					btnPlaylists;
-	private JPanel panelGeneral;
+					
+	private JPanel panelActual;
 	private VentanaJavaMusic ventana;
 	private Font fuente;
-	public PanelOpciones(JPanel panelGeneral, VentanaJavaMusic ventana, Font fuente) {
+	public PanelOpciones(JPanel panelActual, VentanaJavaMusic ventana, Font fuente) {
 		super();
-		this.panelGeneral=panelGeneral;
+		this.panelActual=panelActual;
 		this.ventana=ventana;
 		this.setPreferredSize(new Dimension(150,650));
 		this.btnInicio=new JButton("Inicio");
 		this.btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PanelInicio nuevoPanel=new PanelInicio(fuente);
-				ventana.getContentPane().remove(ventana.getPanelGeneral());
-				ventana.setPanelGeneral(nuevoPanel);
-				ventana.getScroll().setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-				ventana.revalidate();
+				PanelInicio pi=new PanelInicio(fuente);
+				ventana.setPanelActual(pi);
+				setPanelActual(pi);
 			}
 		});
 		this.btnAlbumes=new JButton("Albumes");
 		this.btnAlbumes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				PanelAlbumes pal=new PanelAlbumes(fuente);
+				ventana.setPanelActual(pal);
+				setPanelActual(pal);
 			}
 		});
 		this.btnArtistas=new JButton("Artistas");
 		this.btnArtistas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				PanelArtistas par=new PanelArtistas(fuente);
+				ventana.setPanelActual(par);
+				setPanelActual(par);
 			}
 		});
 		this.btnPlaylists=new JButton("Playlists");
-		this.btnInicio.addActionListener(new ActionListener() {
+		this.btnPlaylists.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				PanelPlaylists pp=new PanelPlaylists(fuente);
+				ventana.setPanelActual(pp);
+				setPanelActual(pp);
 			}
 		});
 		this.add(this.btnInicio);
 		this.add(this.btnAlbumes);
 		this.add(this.btnArtistas);
 		this.add(this.btnPlaylists);
+	}
+	public void setPanelActual(JPanel panelActual) {
+		this.panelActual=panelActual;
 	}
 	public void paintComponent(Graphics g) {
 		

@@ -1,7 +1,8 @@
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
-public class Playlist {
+public class Playlist<NodoP> implements Iterable<NodoP>{
 	
 	protected NodoP first,
 				  last;
@@ -14,14 +15,14 @@ public class Playlist {
 	}
 	public Cancion First() throws NoSuchElementException{
 		try {
-			return this.first.getCancion();
+			return (Cancion) this.first.getCancion();
 		}catch ( NullPointerException ex){
 			throw new NoSuchElementException("Exception");
 		}
 	}
 	
 	public Cancion Last() throws NoSuchElementException {
-		return this.last.getCancion();
+		return (Cancion) this.last.getCancion();
 	}
 	public int size() {
 		return this.size;
@@ -34,21 +35,25 @@ public class Playlist {
 	//Añadir en la ultima posición
 	public void add(Cancion cancion){
 		NodoP nuevoN = new NodoP(cancion);
-		this.last.setNext(nuevoN);
-		nuevoN.setPrevious(this.last);
+		if(size == 0) {
+			this.first = nuevoN;
+		}else {
+			this.last.setNext(nuevoN);
+			nuevoN.setPrevious(this.last);
+		}
 		this.last = nuevoN;
 		this.size++;
 	}
 	
 	public Cancion getCancion(String Id) {
 		NodoP current = this.first;
-		while(!current.getCancion().getId().equals(Id)) {
+		while(!((Cancion) current.getCancion()).getId().equals(Id)) {
 			current = current.getNext();
 			if(current.equals(null)) {
 				break;
 			}
 		}
-		return current.getCancion();
+		return (Cancion) current.getCancion();
 	}
 	
 	public static void main (String arg[]) {
@@ -60,7 +65,10 @@ public class Playlist {
 		
 	}
 	
-	protected class NodoP{
+	
+	
+	
+	class NodoP<Cancion>{
 		Cancion cancion;
 		NodoP next,
 			  previous;
@@ -96,5 +104,16 @@ public class Playlist {
 		
 		
 	}
+
+	@Override
+	public Iterator<NodoP> iterator() {
+		// TODO Auto-generated method stub
+		return new Iterator<NodoP>();
+	}
+
+
+
+
+	
 	
 }

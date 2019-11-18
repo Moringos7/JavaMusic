@@ -2,7 +2,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
-public class Playlist<NodoP> implements Iterable<NodoP>{
+public class Playlist<T> implements Iterable<T>{
 	
 	protected NodoP first,
 				  last;
@@ -44,7 +44,6 @@ public class Playlist<NodoP> implements Iterable<NodoP>{
 		this.last = nuevoN;
 		this.size++;
 	}
-	
 	public Cancion getCancion(String Id) {
 		NodoP current = this.first;
 		while(!((Cancion) current.getCancion()).getId().equals(Id)) {
@@ -57,18 +56,14 @@ public class Playlist<NodoP> implements Iterable<NodoP>{
 	}
 	
 	public static void main (String arg[]) {
-		Playlist myPlaylist = new Playlist();
-		for(int i = 0; i<10;i++) {
-			myPlaylist.add(new Cancion(""+i));
-		}
-		System.out.println(myPlaylist.getCancion("3"));
 		
+		/*Iterator<Cancion> song = myPlaylist.iterator();
+		while(song.hasNext()) {
+			System.out.println(song.next());
+		}*/
 	}
 	
-	
-	
-	
-	class NodoP<Cancion>{
+	public class NodoP<Cancion>{
 		Cancion cancion;
 		NodoP next,
 			  previous;
@@ -106,9 +101,28 @@ public class Playlist<NodoP> implements Iterable<NodoP>{
 	}
 
 	@Override
-	public Iterator<NodoP> iterator() {
+	public Iterator<T> iterator() {
 		// TODO Auto-generated method stub
-		return new Iterator<NodoP>();
+		return new Iterator<T>() {
+			int pos = 0;
+			NodoP current = first;
+			@Override
+			public boolean hasNext() {
+				return pos<size;
+			}
+
+			@Override
+			public T next() {
+				if(this.hasNext()) {
+					NodoP temp = current;
+					current = current.next;
+					pos++;
+					return (T)temp.getCancion();
+				}else {
+					throw new  IllegalStateException("No más elementos");
+				}
+			}			
+		};
 	}
 
 

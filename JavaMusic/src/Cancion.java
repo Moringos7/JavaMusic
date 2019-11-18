@@ -11,7 +11,7 @@ public class Cancion {
 		this.id = id;
 	}
 	
-	public Cancion(String id, int duracion, String  artista, String titulo, String genero, String uRL,String img) {
+	public Cancion(String id, String titulo,int duracion,String img, String  artista) {
 		super();
 		this.id = id;
 		this.duracion = duracion;

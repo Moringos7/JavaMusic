@@ -39,7 +39,7 @@ public class Connection {
 			}
 		}*/
 		
-		/*
+		
 		LinkedList<Genero>Generos = null;
 		try {
 			Generos = conect.getGeneros();
@@ -49,7 +49,7 @@ public class Connection {
 			for(Genero genero : Generos) {
 				System.out.println(genero);
 			}
-		}*/
+		}
 		
 	}
 	

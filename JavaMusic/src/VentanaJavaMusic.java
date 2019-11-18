@@ -15,6 +15,7 @@ public class VentanaJavaMusic extends JFrame {
 	private JavaMusic app;
 	private Font fuente;
 	private JScrollPane scroll;
+	private PanelOpciones po;
 	
 	public VentanaJavaMusic() {
 		super("JavaMusic");
@@ -34,7 +35,8 @@ public class VentanaJavaMusic extends JFrame {
 		this.panelGeneral.add(this.panelActual);
 		this.add(new PanelReproduccion(null,null,this.fuente),BorderLayout.SOUTH);
 		this.add(panelGeneral);
-		this.add(new PanelOpciones(this.panelActual,this, this.fuente),BorderLayout.WEST);
+		this.po=new PanelOpciones(this.panelActual,this, this.fuente);
+		this.add(this.po,BorderLayout.WEST);
 		this.scroll=new JScrollPane(this.panelGeneral);
 		this.scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		this.scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -50,6 +52,7 @@ public class VentanaJavaMusic extends JFrame {
 		this.panelGeneral.remove(this.panelActual);
 		this.panelGeneral.add(panelActual);
 		this.panelActual=panelActual;
+		this.po.setPanelActual(panelActual);
 		this.revalidate();
 	}
 	public JPanel getPanelGeneral() {

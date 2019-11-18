@@ -5,58 +5,83 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.LinkedList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class PanelGeneros extends JPanel {
 	private Font fuente;
-	private Image[] imagenes;
-	private JButton[] botones;
+	private LinkedList<Image> imagenes;
+	private LinkedList<Genero> generos;
+	private Connection coneccion;
 	public PanelGeneros(Font fuente) {
 		super();
 		this.setPreferredSize(new Dimension(1000,800));
 		this.setLayout(null);
 		this.setBackground(Color.BLACK);
 		this.fuente=fuente.deriveFont(20f);
-		this.imagenes=new Image[10];
-		for (int i=0; i<this.imagenes.length;i++) {
-			this.imagenes[i]=new ImageIcon("rock.jpg").getImage();
+		this.imagenes= new LinkedList<>();
+		this.coneccion=new Connection();
+		try {
+			this.generos=coneccion.getGeneros();
+		}catch(IOException ex) {
+			ex.printStackTrace();
 		}
-		this.botones=new JButton[10];
 		int xbtn=50;
 		int ybtn=220;
-		for(int i=0; i<this.botones.length;i++) {
-			if(i%4==0 &&i!=0) {
+		int y=90;
+		int x=25;
+		int cont=0;
+		for(Genero genero:this.generos) {
+			if(cont%4==0 && cont!=0) {
+				y+=250;
+				x=25;
 				ybtn+=250;
 				xbtn=50;
 			}
-			this.botones[i]=new JButton("Ver Genero");
-			this.botones[i].addActionListener(new ActionListener() {
+			JLabel nuevoGenero=new JLabel(genero.getNombre());
+			nuevoGenero.setFont(this.fuente);
+			nuevoGenero.setBackground(Color.BLUE);
+			nuevoGenero.setForeground(Color.WHITE);
+			nuevoGenero.setBounds(x, y, 200, 200);
+			this.add(nuevoGenero);
+			x+=200;
+			Image nuevaImagen=new ImageIcon(genero.getImg()).getImage();
+			this.imagenes.add(nuevaImagen);
+			cont++;
+			JButton nuevoBoton=new JButton("Ver Genero");
+			nuevoBoton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
 					
 				}
+				
 			});
-			this.botones[i].setBounds(xbtn, ybtn, 100, 25);
+			nuevoBoton.setBounds(xbtn, ybtn, 100, 25);
 			xbtn+=200;
-			this.add(this.botones[i]);
+			this.add(nuevoBoton);
 		}
+		
 		
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		int y=25;
 		int x=25;
-		for (int i=0; i<this.imagenes.length;i++) {
-			if(i%4==0 && i!=0) {
+		int cont=0;
+		super.paintComponent(g);
+		for (Image imagen: this.imagenes) {
+			if(cont%4==0 && cont!=0) {
 				y+=250;
 				x=25;
 			}
-			g.drawImage(this.imagenes[i], x, y, 150, 150, this);
-			g.setFont(this.fuente);
-			g.setColor(Color.WHITE);
-			g.drawString("Rock", x, y+175);
+			g.drawImage(imagen, x, y, 150, 150, this);
 			x+=200;
+			cont++;
 		}	
 	}
 }

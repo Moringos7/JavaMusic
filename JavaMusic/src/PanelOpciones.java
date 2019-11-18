@@ -14,12 +14,10 @@ public class PanelOpciones extends JPanel{
 					btnPlaylists,
 					btnGeneros;
 	private JPanel panelActual;
-	private VentanaJavaMusic ventana;
 	private Font fuente;
 	public PanelOpciones(JPanel panelActual, VentanaJavaMusic ventana, Font fuente) {
 		super();
 		this.panelActual=panelActual;
-		this.ventana=ventana;
 		this.setBackground(new Color(17,16,16));
 		this.setPreferredSize(new Dimension(150,650));
 		this.btnInicio=new JButton("Inicio");
@@ -33,7 +31,7 @@ public class PanelOpciones extends JPanel{
 		this.btnAlbumes=new JButton("Albumes");
 		this.btnAlbumes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PanelAlbumes pal=new PanelAlbumes(fuente);
+				PanelAlbumes pal=new PanelAlbumes(fuente,ventana);
 				ventana.setPanelActual(pal);
 				setPanelActual(pal);
 			}

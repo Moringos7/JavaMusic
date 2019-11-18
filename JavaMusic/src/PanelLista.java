@@ -19,7 +19,7 @@ public class PanelLista extends JPanel{
 	private Image imagen;
 	private Font fuente;
 	
-	public PanelLista(Playlist playlistActual, Font fuente) {
+	public PanelLista(String id, Font fuente) {
 		super();
 		this.setPreferredSize(new Dimension(1000,650));
 		this.setLayout(null);

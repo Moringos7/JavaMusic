@@ -5,6 +5,9 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.LinkedList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,7 +18,9 @@ public class PanelAlbumes extends JPanel {
 	private Font fuente;
 	private Image[] imagenes;
 	private JButton[] botones;
-	private JLabel[] textos;
+	private LinkedList<JLabel> textos;
+	private LinkedList<Album> albumes;
+	private Connection coneccion;
 	public PanelAlbumes(Font fuente) {
 		super();
 		this.setPreferredSize(new Dimension(1000,800));
@@ -23,7 +28,12 @@ public class PanelAlbumes extends JPanel {
 		this.setBackground(Color.BLACK);
 		this.fuente=fuente.deriveFont(15f);
 		this.imagenes=new Image[10];
-		this.textos=new JLabel[10];
+		this.textos=new LinkedList<>();
+		try {
+			this.albumes=coneccion.getAlbumes();
+		}catch(IOException ex) {
+			ex.printStackTrace();
+		}
 		for (int i=0; i<this.imagenes.length;i++) {
 			this.imagenes[i]=new ImageIcon("DeathOfABachelor.jpg").getImage();
 		}
@@ -44,10 +54,23 @@ public class PanelAlbumes extends JPanel {
 			this.botones[i].setBounds(xbtn, ybtn, 100, 25);
 			xbtn+=200;
 			this.add(this.botones[i]);
-			this.textos[i]=new JLabel("Death Of A Bachelor");
-			this.textos[i].setFont(this.fuente);
-			this.textos[i].setBackground(Color.BLUE);
-			this.textos[i].setForeground(Color.WHITE);
+			
+		}
+		int y=25;
+		int x=25;
+		int cont=0;
+		for(Album album:this.albumes) {
+			if(cont%4==0 && cont!=0) {
+				y+=250;
+				x=25;
+			}
+			JLabel nuevo=new JLabel(album.getTitulo());
+			nuevo.setFont(this.fuente);
+			nuevo.setBackground(Color.BLUE);
+			nuevo.setForeground(Color.WHITE);
+			nuevo.setBounds(x, y, 100, 100);
+			this.add(nuevo);
+			
 		}
 		
 	}

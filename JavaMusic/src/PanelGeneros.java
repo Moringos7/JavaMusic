@@ -9,11 +9,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class PanelPlaylists extends JPanel {
+public class PanelGeneros extends JPanel {
 	private Font fuente;
-	private JButton[] botones;
 	private Image[] imagenes;
-	public PanelPlaylists(Font fuente) {
+	private JButton[] botones;
+	public PanelGeneros(Font fuente) {
 		super();
 		this.setPreferredSize(new Dimension(1000,800));
 		this.setLayout(null);
@@ -21,17 +21,17 @@ public class PanelPlaylists extends JPanel {
 		this.fuente=fuente.deriveFont(20f);
 		this.imagenes=new Image[10];
 		for (int i=0; i<this.imagenes.length;i++) {
-			this.imagenes[i]=new ImageIcon("linkinpark.jpg").getImage();
+			this.imagenes[i]=new ImageIcon("rock.jpg").getImage();
 		}
 		this.botones=new JButton[10];
 		int xbtn=50;
 		int ybtn=220;
 		for(int i=0; i<this.botones.length;i++) {
-			if(i%4==0 && i!=0) {
+			if(i%4==0 &&i!=0) {
 				ybtn+=250;
 				xbtn=50;
 			}
-			this.botones[i]=new JButton("Ver Playlist");
+			this.botones[i]=new JButton("Ver Genero");
 			this.botones[i].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
@@ -41,6 +41,7 @@ public class PanelPlaylists extends JPanel {
 			xbtn+=200;
 			this.add(this.botones[i]);
 		}
+		
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -54,8 +55,8 @@ public class PanelPlaylists extends JPanel {
 			g.drawImage(this.imagenes[i], x, y, 150, 150, this);
 			g.setFont(this.fuente);
 			g.setColor(Color.WHITE);
-			g.drawString("Tu Playlist", x, y+175);
+			g.drawString("Rock", x, y+175);
 			x+=200;
-		}
+		}	
 	}
 }

@@ -19,17 +19,17 @@ public class PanelArtistas extends JPanel{
 		this.setPreferredSize(new Dimension(1000,800));
 		this.setLayout(null);
 		this.setBackground(Color.BLACK);
-		this.fuente=fuente;
+		this.fuente=fuente.deriveFont(20f);
 		this.imagenes=new Image[10];
 		for (int i=0; i<this.imagenes.length;i++) {
 			this.imagenes[i]=new ImageIcon("linkinpark.jpg").getImage();
 		}
 		this.botones=new JButton[10];
 		int xbtn=50;
-		int ybtn=200;
+		int ybtn=220;
 		for(int i=0; i<this.botones.length;i++) {
 			if(i%4==0 &&i!=0) {
-				ybtn+=220;
+				ybtn+=250;
 				xbtn=50;
 			}
 			this.botones[i]=new JButton("Ver Artista");
@@ -50,10 +50,13 @@ public class PanelArtistas extends JPanel{
 		int x=25;
 		for (int i=0; i<this.imagenes.length;i++) {
 			if(i%4==0 && i!=0) {
-				y+=225;
+				y+=250;
 				x=25;
 			}
 			g.drawImage(this.imagenes[i], x, y, 150, 150, this);
+			g.setFont(this.fuente);
+			g.setColor(Color.WHITE);
+			g.drawString("Linkin Park", x, y+175);
 			x+=200;
 		}
 	}

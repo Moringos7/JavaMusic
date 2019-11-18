@@ -13,7 +13,6 @@ public class VentanaJavaMusic extends JFrame {
 	private JPanel panelGeneral;
 	private JPanel panelActual;
 	private JavaMusic app;
-	private PanelOpciones po;
 	private Font fuente;
 	private JScrollPane scroll;
 	
@@ -33,6 +32,7 @@ public class VentanaJavaMusic extends JFrame {
 		this.panelGeneral=new JPanel();
 		this.panelActual=new PanelInicio(this.fuente);
 		this.panelGeneral.add(this.panelActual);
+		this.add(new PanelReproduccion(null,null,this.fuente),BorderLayout.SOUTH);
 		this.add(panelGeneral);
 		this.add(new PanelOpciones(this.panelActual,this, this.fuente),BorderLayout.WEST);
 		this.scroll=new JScrollPane(this.panelGeneral);

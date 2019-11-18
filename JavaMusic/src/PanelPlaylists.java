@@ -8,13 +8,12 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
-public class PanelAlbumes extends JPanel {
+public class PanelPlaylists extends JPanel {
 	private Font fuente;
-	private Image[] imagenes;
 	private JButton[] botones;
-	public PanelAlbumes(Font fuente) {
+	private Image[] imagenes;
+	public PanelPlaylists(Font fuente) {
 		super();
 		this.setPreferredSize(new Dimension(1000,800));
 		this.setLayout(null);
@@ -22,17 +21,17 @@ public class PanelAlbumes extends JPanel {
 		this.fuente=fuente;
 		this.imagenes=new Image[10];
 		for (int i=0; i<this.imagenes.length;i++) {
-			this.imagenes[i]=new ImageIcon("DeathOfABachelor.jpg").getImage();
+			this.imagenes[i]=new ImageIcon("linkinpark.jpg").getImage();
 		}
 		this.botones=new JButton[10];
 		int xbtn=50;
 		int ybtn=200;
 		for(int i=0; i<this.botones.length;i++) {
-			if(i%4==0 &&i!=0) {
+			if(i%4==0 && i!=0) {
 				ybtn+=220;
 				xbtn=50;
 			}
-			this.botones[i]=new JButton("Ver Album");
+			this.botones[i]=new JButton("Ver Playlist");
 			this.botones[i].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
@@ -42,7 +41,6 @@ public class PanelAlbumes extends JPanel {
 			xbtn+=200;
 			this.add(this.botones[i]);
 		}
-		
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -55,6 +53,6 @@ public class PanelAlbumes extends JPanel {
 			}
 			g.drawImage(this.imagenes[i], x, y, 150, 150, this);
 			x+=200;
-		}	
+		}
 	}
 }

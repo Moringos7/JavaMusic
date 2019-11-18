@@ -8,7 +8,7 @@ public class Cancion {
 				   artista,
 				   img;
 	public Cancion(String id) {
-		this.titulo = titulo;
+		this.id = id;
 	}
 	
 	public Cancion(String id, int duracion, String  artista, String titulo, String genero, String uRL,String img) {

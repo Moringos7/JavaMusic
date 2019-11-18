@@ -3,9 +3,9 @@ import java.util.NoSuchElementException;
 
 public class Playlist {
 	
-	private NodoP first,
+	protected NodoP first,
 				  last;
-	private int size;
+	protected int size;
 
 	public Playlist() {
 		super();
@@ -31,7 +31,8 @@ public class Playlist {
 		return this.size == 0;
 	}
 	
-	public void addLast(Cancion cancion){
+	//Añadir en la ultima posición
+	public void add(Cancion cancion){
 		NodoP nuevoN = new NodoP(cancion);
 		this.last.setNext(nuevoN);
 		nuevoN.setPrevious(this.last);
@@ -39,32 +40,23 @@ public class Playlist {
 		this.size++;
 	}
 	
-	public void addAt(Cancion cancion,int pos) throws IndexOutOfBoundsException {
-		if(pos < 0 || pos >= this.size) {
-			throw new IndexOutOfBoundsException("No se puede colocar un valor en la posición "+pos+"en una lista de tamaño "+ this.size);
-		}else {
-			NodoP current = this.first,
-				  temp = null,
-				  nuevoN = new NodoP(cancion);
-			for(int i = 0; i < pos;i++) {
-				temp = current;
-				current = current.getNext();
-				
-			}
-			
-			current.setPrevious(nuevoN);
-			nuevoN.setPrevious(this.last);
-			this.last = nuevoN;
-			
+	public Cancion getCancion(String Id) {
+		NodoP current = this.first;
+		while(!current.getCancion().getId().equals(Id)) {
+			current = current.getNext();
 		}
+		return current.getCancion();
 	}
 	
-	
 	public static void main (String arg[]) {
+		Playlist myPlaylist = new Playlist();
+		for(int i = 0; i<10;i++) {
+			myPlaylist.add(new Cancion(""+i));
+		}
 		
 	}
 	
-	class NodoP{
+	protected class NodoP{
 		Cancion cancion;
 		NodoP next,
 			  previous;

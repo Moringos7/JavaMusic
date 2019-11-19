@@ -137,7 +137,7 @@ public class Connection {
 
 			while ((inputLine = in.readLine()) != null) {
 				StringTokenizer tokens = new StringTokenizer(inputLine,"|");
-				canciones.add(new Cancion(tokens.nextToken(),
+				canciones.addLast(new Cancion(tokens.nextToken(),
 										  tokens.nextToken(),
 										  Integer.parseInt(tokens.nextToken()),
 										  tokens.nextToken(),
@@ -163,7 +163,7 @@ public class Connection {
 
 			while ((inputLine = in.readLine()) != null) {
 				StringTokenizer tokens = new StringTokenizer(inputLine,"|");
-				canciones.add(new Cancion(tokens.nextToken(),
+				canciones.addLast(new Cancion(tokens.nextToken(),
 										  tokens.nextToken(),
 										  Integer.parseInt(tokens.nextToken()),
 										  tokens.nextToken(),
@@ -189,7 +189,7 @@ public class Connection {
 
 			while ((inputLine = in.readLine()) != null) {
 				StringTokenizer tokens = new StringTokenizer(inputLine,"|");
-				canciones.add(new Cancion(tokens.nextToken(),
+				canciones.addLast(new Cancion(tokens.nextToken(),
 										  tokens.nextToken(),
 										  Integer.parseInt(tokens.nextToken()),
 										  tokens.nextToken(),

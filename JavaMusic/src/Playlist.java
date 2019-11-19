@@ -9,12 +9,16 @@ public class Playlist<T> implements ListIterator<T>{
 	protected NodoP first,
 				  last;
 	protected int size;
+	protected int pos;
 	protected String titulo;
+	protected NodoP currentG;
 
 	public Playlist() {
 		super();
+		this.pos = 0;
 		this.first = this.last = null;
 		this.size = 0;
+		this.currentG = null;
 	}
 	public String getTitulo() {
 		return this.titulo;
@@ -40,17 +44,20 @@ public class Playlist<T> implements ListIterator<T>{
 	public boolean isEmpty() {
 		return this.size == 0;
 	}
-	
+
 	//Añadir en la ultima posición
-	public void add(Cancion cancion){
+	public void addLast(Cancion cancion){
 		NodoP nuevoN = new NodoP(cancion);
-		if(size == 0) {
+		if(this.size == 0) {
 			this.first = nuevoN;
+			this.last = nuevoN;
+			this.currentG = null;
+			this.pos = 0;
 		}else {
 			this.last.setNext(nuevoN);
 			nuevoN.setPrevious(this.last);
+			this.last = nuevoN;
 		}
-		this.last = nuevoN;
 		this.size++;
 	}
 	public Cancion getCancion(String Id) {
@@ -65,17 +72,20 @@ public class Playlist<T> implements ListIterator<T>{
 	}
 	
 	public static void main (String arg[]) {
-		/*Playlist<Cancion> myPlaylist = null;
+		
+		Playlist<Cancion> play =  null;
 		try {
-			myPlaylist = new Connection().getCancionesArtista("1");
+			play = new Connection().getCancionesArtista("1");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			play.next();
+			System.out.println(play.previous());
+			System.out.println(play.pos);
 		}
-		Iterator<Cancion> song = myPlaylist.iterator();
-		while(song.hasNext()) {
-			System.out.println(song.next());
-		}*/
+		
+		
 	}
 	
 	public class NodoP<Cancion>{
@@ -115,7 +125,7 @@ public class Playlist<T> implements ListIterator<T>{
 		
 	}
 
-	@Override
+	/*@Override
 	public listIterator<T> listIterator() {
 		// TODO Auto-generated method stub
 		return new Iterator<T>() {
@@ -153,27 +163,69 @@ public class Playlist<T> implements ListIterator<T>{
 			}
 		};
 	}
-	
+	*/
 	@Override
 	public boolean hasNext() {
-		// TODO Auto-generated method stub
-		return false;
+		return pos < size;
 	}
 	@Override
 	public boolean hasPrevious() {
 		// TODO Auto-generated method stub
-		return false;
+		return pos > 0;
 	}
 	@Override
 	public T next() {
-		// TODO Auto-generated method stub
-		return null;
+		if(this.hasNext()) {
+			if(currentG == null) {
+				currentG = first;
+			}else {
+				currentG = currentG.next;
+				pos++;
+			}
+			
+			return (T)currentG.getCancion();
+		}else {
+			throw new  IllegalStateException("No más elementosN");
+		}
 	}
 	@Override
 	public T previous() {
-		// TODO Auto-generated method stub
-		return null;
+		if(this.hasPrevious()) {
+			currentG = currentG.getPrevious();
+			pos--;
+			return (T)currentG.getCancion();
+		}else {
+			throw new IllegalStateException("No más elementosP");
+		}
 	}
+	
+	
+	@Override
+	public int nextIndex() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int previousIndex() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public void remove() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void set(T e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void add(T e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 
 

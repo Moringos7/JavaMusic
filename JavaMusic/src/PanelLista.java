@@ -75,11 +75,10 @@ public class PanelLista extends JPanel{
 		this.btnOrden.setBounds(325, 150, 100, 25);
 		this.btnRandom.setBounds(450,150,100,25);
 		this.btnOpciones.setBounds(575, 150, 100, 25);
-		this.labelTitulo=new JLabel(playlist.);
+		this.labelTitulo=new JLabel(this.playlistActual.getTitulo());
 		this.labelTitulo.setFont(this.fuente);
 		this.labelTitulo.setBackground(Color.BLUE);
 		this.labelTitulo.setForeground(Color.WHITE);
-		for()
 		this.add(this.btnOrden);
 		this.add(this.btnRandom);
 		this.add(btnOpciones);

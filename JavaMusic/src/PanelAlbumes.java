@@ -70,6 +70,7 @@ public class PanelAlbumes extends JPanel {
 					Playlist<Cancion> playlist=null;
 					try {
 						playlist=coneccion.getCancionesAlbum(album.getId());
+						playlist.setTitulo(album.getTitulo());
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

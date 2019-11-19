@@ -50,32 +50,7 @@ public class Connection {
 			for(Genero genero : Generos) {
 				System.out.println(genero);
 			}
-<<<<<<< HEAD
-=======
-		}*/
-		/*
-		Playlist<Cancion> canciones = null;
-		try {
-			canciones = conect.getCancionesGenero("2");
-		}catch (IOException e) {
-			e.printStackTrace();
-		}finally {
-			Iterator<Cancion> song = canciones.iterator();
-			while(song.hasNext()) {
-				System.out.println(song.next());
-			}
-		}*/
-		Cancion song = null;
-		try {
-			song = conect.getCancion("3");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			System.out.println(song);
->>>>>>> 73adb3f4edc948be5b70fcf841673c9c5d8141f1
 		}
-		
 	}
 	
 	//Obtiene Los Artistas de la Base de Datos

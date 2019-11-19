@@ -1,18 +1,26 @@
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
-public class Playlist<T> implements Iterable<T>{
+public class Playlist<T> implements ListIterator<T>{
 	
 	protected NodoP first,
 				  last;
 	protected int size;
+	protected String titulo;
 
 	public Playlist() {
 		super();
 		this.first = this.last = null;
 		this.size = 0;
+	}
+	public String getTitulo() {
+		return this.titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 	public Cancion First() throws NoSuchElementException{
 		try {
@@ -57,7 +65,7 @@ public class Playlist<T> implements Iterable<T>{
 	}
 	
 	public static void main (String arg[]) {
-		Playlist<Cancion> myPlaylist = null;
+		/*Playlist<Cancion> myPlaylist = null;
 		try {
 			myPlaylist = new Connection().getCancionesArtista("1");
 		} catch (IOException e) {
@@ -67,7 +75,7 @@ public class Playlist<T> implements Iterable<T>{
 		Iterator<Cancion> song = myPlaylist.iterator();
 		while(song.hasNext()) {
 			System.out.println(song.next());
-		}
+		}*/
 	}
 	
 	public class NodoP<Cancion>{
@@ -108,7 +116,7 @@ public class Playlist<T> implements Iterable<T>{
 	}
 
 	@Override
-	public Iterator<T> iterator() {
+	public listIterator<T> listIterator() {
 		// TODO Auto-generated method stub
 		return new Iterator<T>() {
 			int pos = 0;
@@ -145,6 +153,28 @@ public class Playlist<T> implements Iterable<T>{
 			}
 		};
 	}
+	
+	@Override
+	public boolean hasNext() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean hasPrevious() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public T next() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public T previous() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 
 

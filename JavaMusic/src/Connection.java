@@ -51,7 +51,6 @@ public class Connection {
 				System.out.println(genero);
 			}
 		}
-		
 	}
 	
 	//Obtiene Los Artistas de la Base de Datos

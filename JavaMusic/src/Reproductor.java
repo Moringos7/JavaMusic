@@ -21,25 +21,26 @@ public class Reproductor extends Thread {
     private Playlist<Cancion> playlist;
     private Iterator<Cancion> songs;
     private Queue<Cancion> cola;
-    private LinkedList<String> ID;
+    private LinkedList<String> Ids;
+    private Cancion actualCancion;
    
-    
     public Reproductor(Cancion song){
     	this.playlist = new Playlist<Cancion>();
     	this.cola = new LinkedList<Cancion>();
     	this.cola.add(song);
-    	prepareSong(song.getTitulo());
+    	prepareSong(song);
     }
     public Reproductor(Playlist<Cancion> playlist) {
     	this.playlist = playlist;
     	this.cola = new LinkedList<Cancion>();
     	this.songs = playlist.iterator(); 
-    	this.prepareSong(songs.next().getId());
+    	this.prepareSong(songs.next());
     }
     
-    private void prepareSong(String id){
+    private void prepareSong(Cancion cancion){
     	this.validFlag = true;
-    	this.setRutaMusica(id);
+    	actualCancion = cancion;
+    	this.setRutaMusica(cancion.getId());
         this.validFlag = true;
         try
         {
@@ -57,7 +58,10 @@ public class Reproductor extends Thread {
         }
     }
     
-    
+    private Cancion getActualCancion(){
+    	return actualCancion;
+    }
+        
     private void setRutaMusica(String musica)
     {
          this.rutaMusica = this.rutaGeneral + musica +".wav";
@@ -77,13 +81,9 @@ public class Reproductor extends Thread {
                     e.printStackTrace();
                 }
         	}
-    		if(!this.cola.isEmpty()) {
-        		prepareSong(cola.poll().getTitulo());
-        	}
     	}
-    	
-    	
     }
+    
     public void play(){
         this.sound.start();
     }
@@ -93,13 +93,13 @@ public class Reproductor extends Thread {
     public void nextSong() {
     	this.pause();
     	if(!cola.isEmpty()) {
-    		this.prepareSong(this.cola.poll().getId());
+    		this.prepareSong(this.cola.poll());
     	}else {
     		if(this.songs.hasNext()) {
-        		this.prepareSong(this.songs.next().getId());
+        		this.prepareSong(this.songs.next());
         	}else {
         		this.songs = playlist.iterator();
-        		this.prepareSong(songs.next().getId());
+        		this.prepareSong(songs.next());
         	}
     	}
     	this.sound.start();

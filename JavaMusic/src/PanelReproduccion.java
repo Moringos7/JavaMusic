@@ -27,7 +27,7 @@ public class PanelReproduccion extends JPanel{
 	public PanelReproduccion() {
 		
 	}
-	public PanelReproduccion(Album albumActual,Cancion cancionActual, Font fuente) {
+	public PanelReproduccion(Cancion cancionActual, Font fuente) {
 		super();
 		this.setPreferredSize(new Dimension(850,100));
 		this.setLayout(null);

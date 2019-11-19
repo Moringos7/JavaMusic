@@ -67,7 +67,14 @@ public class PanelAlbumes extends JPanel {
 			JButton nuevoBoton=new JButton("Ver Album");
 			nuevoBoton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					PanelLista pl=new PanelLista(album.getId(),fuente);
+					Playlist<Cancion> playlist=null;
+					try {
+						playlist=coneccion.getCancionesAlbum(album.getId());
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					PanelLista pl=new PanelLista(playlist,fuente);
 					ventana.setPanelActual(pl);
 					
 					

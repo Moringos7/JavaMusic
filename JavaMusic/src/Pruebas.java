@@ -43,6 +43,18 @@ public class Pruebas {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+		reproductor.previousSong();
+		try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+		reproductor.previousSong();
+		try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 		/*Iterator<Cancion> song = canciones.iterator();
 		while(song.hasNext()) {
 			System.out.println(song.next());

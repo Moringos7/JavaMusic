@@ -19,7 +19,6 @@ public class Reproductor extends Thread {
     protected Clip sound;
     private String rutaMusica;
     private Playlist<Cancion> playlist;
-    private Iterator<Cancion> songs;
     private Queue<Cancion> cola;
     private LinkedList<String> Ids;
     private Cancion actualCancion;
@@ -32,9 +31,8 @@ public class Reproductor extends Thread {
     }
     public Reproductor(Playlist<Cancion> playlist) {
     	this.playlist = playlist;
-    	this.cola = new LinkedList<Cancion>();
-    	this.songs = playlist.iterator(); 
-    	this.prepareSong(songs.next());
+    	this.cola = new LinkedList<Cancion>(); 
+    	this.prepareSong(playlist.next());
     }
     
     private void prepareSong(Cancion cancion){
@@ -95,18 +93,24 @@ public class Reproductor extends Thread {
     	if(!cola.isEmpty()) {
     		this.prepareSong(this.cola.poll());
     	}else {
-    		if(this.songs.hasNext()) {
-        		this.prepareSong(this.songs.next());
+    		if(this.playlist.hasNext()) {
+        		this.prepareSong(this.playlist.next());
         	}else {
-        		this.songs = playlist.iterator();
-        		this.prepareSong(songs.next());
+        		//Verificar regresar al final
         	}
     	}
     	this.sound.start();
     	
     }
     public void previousSong() {
+    	this.pause();
     	
+		if(this.playlist.hasPrevious()) {
+    		this.prepareSong(this.playlist.previous());
+    	}else {
+    		//Verificar el inicio
+    	}
+    	this.sound.start();
     }
     public void stopMusic() {
     	this.sound.stop();

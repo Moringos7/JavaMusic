@@ -5,40 +5,80 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class PanelLista extends JPanel{
-	private Playlist playlistActual;
+	private Playlist<Cancion> playlistActual;
 	private JButton btnRandom,
 					btnOrden,
 					btnOpciones;
 	private JComboBox ordenador;
 	private Image imagen;
 	private Font fuente;
+	private Reproductor reproductor;
+	private PanelReproduccion pr;
+	private JLabel labelTitulo;
+	private LinkedList<JLabel>canciones;
 	
-	public PanelLista(String id, Font fuente) {
+	public PanelLista(Playlist<Cancion> playlist, Font fuente) {
 		super();
 		this.setPreferredSize(new Dimension(1000,650));
 		this.setLayout(null);
-		this.imagen=new ImageIcon("DeathOfABachelor.jpg").getImage();
+		this.playlistActual=playlist;
+		this.canciones=new LinkedList<>();
+		this.reproductor=new Reproductor(this.playlistActual);
+		this.imagen=new ImageIcon(playlist.First().getImg()).getImage();
 		this.btnRandom=new JButton("Aleatorio");
+		this.btnRandom.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+			
+		});
 		this.btnOrden=new JButton("Reproducir");
+		this.btnOrden.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				reproductor.play();
+				pr=new PanelReproduccion(playlist.First(),fuente);
+				
+			}
+			
+		});
 		this.btnOpciones=new JButton("Opciones");
+		this.btnOpciones.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		this.ordenador=new JComboBox<>();
 		this.ordenador.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				
 			}
 		});
-		this.playlistActual=playlistActual;
 		this.setBackground(Color.BLACK);
 		this.fuente=fuente.deriveFont(30f);
 		this.btnOrden.setBounds(325, 150, 100, 25);
 		this.btnRandom.setBounds(450,150,100,25);
 		this.btnOpciones.setBounds(575, 150, 100, 25);
+		this.labelTitulo=new JLabel(this.playlistActual.getTitulo());
+		this.labelTitulo.setFont(this.fuente);
+		this.labelTitulo.setBackground(Color.BLUE);
+		this.labelTitulo.setForeground(Color.WHITE);
 		this.add(this.btnOrden);
 		this.add(this.btnRandom);
 		this.add(btnOpciones);

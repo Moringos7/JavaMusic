@@ -33,7 +33,7 @@ public class VentanaJavaMusic extends JFrame {
 		this.panelGeneral=new JPanel();
 		this.panelActual=new PanelInicio(this.fuente);
 		this.panelGeneral.add(this.panelActual);
-		this.add(new PanelReproduccion(null,null,this.fuente),BorderLayout.SOUTH);
+		this.add(new PanelReproduccion(null,this.fuente),BorderLayout.SOUTH);
 		this.add(panelGeneral);
 		this.po=new PanelOpciones(this.panelActual,this, this.fuente);
 		this.add(this.po,BorderLayout.WEST);

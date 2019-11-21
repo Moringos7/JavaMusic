@@ -1,6 +1,4 @@
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
@@ -52,7 +50,7 @@ public class Playlist<T> implements ListIterator<T>{
 			this.first = nuevoN;
 			this.last = nuevoN;
 			this.currentG = null;
-			this.pos = 0;
+			this.pos = 1;
 		}else {
 			this.last.setNext(nuevoN);
 			nuevoN.setPrevious(this.last);
@@ -185,6 +183,7 @@ public class Playlist<T> implements ListIterator<T>{
 			
 			return (T)currentG.getCancion();
 		}else {
+			this.currentG=null;
 			throw new  IllegalStateException("No más elementosN");
 		}
 	}

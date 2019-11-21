@@ -16,13 +16,14 @@ public class VentanaJavaMusic extends JFrame {
 	private Font fuente;
 	private JScrollPane scroll;
 	private PanelOpciones po;
+	private PanelReproduccion pr;
 	
 	public VentanaJavaMusic() {
 		super("JavaMusic");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setSize(1000,650);
 		try {
-			//this.fuente=Font.createFont(Font.TRUETYPE_FONT, new File("CircularStd-Black.otf")).deriveFont(60f);
+			this.fuente=Font.createFont(Font.TRUETYPE_FONT, new File("CircularStd-Black.otf")).deriveFont(60f);
 			GraphicsEnvironment ge= GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge.registerFont(fuente);
 		}catch(IOException ex) {
@@ -33,7 +34,8 @@ public class VentanaJavaMusic extends JFrame {
 		this.panelGeneral=new JPanel();
 		this.panelActual=new PanelInicio(this.fuente);
 		this.panelGeneral.add(this.panelActual);
-		this.add(new PanelReproduccion(null,this.fuente),BorderLayout.SOUTH);
+		this.pr=new PanelReproduccion(this.fuente);
+		this.add(this.pr,BorderLayout.SOUTH);
 		this.add(panelGeneral);
 		this.po=new PanelOpciones(this.panelActual,this, this.fuente);
 		this.add(this.po,BorderLayout.WEST);
@@ -60,5 +62,8 @@ public class VentanaJavaMusic extends JFrame {
 	}
 	public static void main(String[] args) {
 		VentanaJavaMusic vjm= new VentanaJavaMusic();
+	}
+	public PanelReproduccion getPanelReproduccion() {
+		return this.pr;
 	}
 }

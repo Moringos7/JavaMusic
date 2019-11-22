@@ -50,7 +50,7 @@ public class Playlist<T> implements ListIterator<T>{
 			this.first = nuevoN;
 			this.last = nuevoN;
 			this.currentG = null;
-			this.pos = 1;
+			//this.pos = 1;
 		}else {
 			this.last.setNext(nuevoN);
 			nuevoN.setPrevious(this.last);
@@ -72,12 +72,11 @@ public class Playlist<T> implements ListIterator<T>{
 	public Playlist<Cancion> getRandom(){
 		Playlist<Cancion> newList = new Playlist<Cancion>();
 		Cancion[] newArr = new Cancion[this.size];
-		//NodoP<Cancion> nodoTemp = this.currentG;
-		//this.currentG = this.first;
+		NodoP<Cancion> nodoTemp = this.currentG;
+		this.currentG = null;
 		int i = 0;
-		while(this.hasNext()) {
+		while(this.hasNext()){
 			Cancion cancion = (Cancion)this.next();
-			System.out.println(cancion.getId());
 			newArr[i] =  new Cancion(cancion.getId(),
 									 cancion.getTitulo(),
 									 cancion.getDuracion(),
@@ -85,20 +84,15 @@ public class Playlist<T> implements ListIterator<T>{
 									 cancion.getArtista());
 			i++;
 		}
-		/*
-		for(int j = 0; j < newArr.length;i++) {
-			System.out.println(newArr[j].getId());
-		}*/
-		
-		
-		
-		int j = 9;
-		//while(this.size != newArr.length) {
-		/*while(j != 0) {
-			int x = (int)(Math.floor((Math.random()*(0-j)+j)));
-			System.out.println(x);
-			
-		}*/
+		i = this.size-1;
+		while(newList.size() != newArr.length) {
+			int x = (int)(Math.floor((Math.random()*(0-i)+i)));
+			newList.addLast(newArr[x]);
+			for(int j = x; j<i;j++) {
+				newArr[j] = newArr[j+1];
+			}
+			i--;
+		}
 		return newList;
 	}
 	
@@ -110,7 +104,12 @@ public class Playlist<T> implements ListIterator<T>{
 			playlist.addLast(C);
 			//System.out.print((int)(Math.floor((Math.random()*(0-2)+2)))+",");
 		}
-		playlist.getRandom();
+		Playlist<Cancion> play = playlist.getRandom();
+		
+		while(play.hasNext()) {
+			System.out.println(play.next().getId());
+		}
+		
 		/*Playlist<Cancion> play =  null;
 		try {
 			play = new Connection().getCancionesArtista("1");
@@ -168,7 +167,7 @@ public class Playlist<T> implements ListIterator<T>{
 	@Override
 	public boolean hasPrevious() {
 		// TODO Auto-generated method stub
-		return pos > 0;
+		return pos > 1;
 	}
 	@Override
 	public T next() {

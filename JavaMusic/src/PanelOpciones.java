@@ -39,7 +39,7 @@ public class PanelOpciones extends JPanel{
 		this.btnArtistas=new JButton("Artistas");
 		this.btnArtistas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PanelArtistas par=new PanelArtistas(fuente);
+				PanelArtistas par=new PanelArtistas(fuente,ventana);
 				ventana.setPanelActual(par);
 				setPanelActual(par);
 			}
@@ -55,7 +55,7 @@ public class PanelOpciones extends JPanel{
 		this.btnGeneros=new JButton("Generos");
 		this.btnGeneros.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PanelGeneros pg=new PanelGeneros(fuente);
+				PanelGeneros pg=new PanelGeneros(fuente,ventana);
 				ventana.setPanelActual(pg);
 				setPanelActual(pg);
 			}

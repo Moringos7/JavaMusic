@@ -39,7 +39,10 @@ public class PanelLista extends JPanel{
 		this.btnRandom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				Playlist<Cancion>nuevaPlaylist=playlist.getRandom();
+				pr.setPlaylist(nuevaPlaylist);
+				pr.setCancionActual(pr.getPlaylist().First());
+				pr.setReproductor(new Reproductor(nuevaPlaylist));
 				
 			}
 			
@@ -50,7 +53,7 @@ public class PanelLista extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				pr.setPlaylist(playlist);
-				pr.setCancionActual(playlist.First());
+				pr.setCancionActual(pr.getPlaylist().First());
 				pr.setReproductor(reproductor);
 			}
 			
@@ -129,5 +132,12 @@ public class PanelLista extends JPanel{
 		g.setFont(fuente);
 		this.fuente=this.fuente.deriveFont(20f);
 		
+	}
+	public void setImagen(String imagen) {
+		this.imagen=new ImageIcon(imagen).getImage();
+		this.repaint();
+	}
+	public void setReproductor(Reproductor reproductor) {
+		this.reproductor=reproductor;
 	}
 }

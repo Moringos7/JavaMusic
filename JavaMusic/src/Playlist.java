@@ -75,6 +75,8 @@ public class Playlist<T> implements ListIterator<T>{
 		NodoP<Cancion> nodoTemp = this.currentG;
 		this.currentG = null;
 		int i = 0;
+		int tempP = pos;
+		this.pos = 0;
 		while(this.hasNext()){
 			Cancion cancion = (Cancion)this.next();
 			newArr[i] =  new Cancion(cancion.getId(),
@@ -93,6 +95,8 @@ public class Playlist<T> implements ListIterator<T>{
 			}
 			i--;
 		}
+		this.pos = tempP;
+		this.currentG = nodoTemp;
 		return newList;
 	}
 	

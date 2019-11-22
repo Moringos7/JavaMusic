@@ -174,7 +174,8 @@ public class PanelReproduccion extends JPanel{
 	
 	public void setPlaylist(Playlist<Cancion> playlist) {
 		this.playlist=playlist;
-		this.playlist.pos=0;
-		this.playlist.currentG=this.playlist.first;
+	}
+	public Playlist<Cancion>getPlaylist(){
+		return this.playlist;
 	}
 }

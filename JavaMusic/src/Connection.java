@@ -3,7 +3,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException; 
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -41,7 +42,7 @@ public class Connection {
 		}*/
 		
 		
-		LinkedList<Genero>Generos = null;
+		/*LinkedList<Genero>Generos = null;
 		try {
 			Generos = conect.getGeneros();
 		} catch (IOException e) {
@@ -50,7 +51,8 @@ public class Connection {
 			for(Genero genero : Generos) {
 				System.out.println(genero);
 			}
-		}
+		}*/
+		//conect.getSearchResult("a");
 	}
 	
 	//Obtiene Los Artistas de la Base de Datos
@@ -224,6 +226,32 @@ public class Connection {
 			in.close();
 		}
 		return cancion;
+	}
+	
+	public LinkedList<String> getSearchResult(String param) {
+		LinkedList<String> listResult = new LinkedList<String>();
+		try {
+			URL obj = new URL(GET_URL + "Busqueda.php?busca="+param);
+			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+			con.setRequestMethod("GET");
+			con.setRequestProperty("User-Agent", USER_AGENT);
+			int responseCode = con.getResponseCode();
+			if (responseCode == HttpURLConnection.HTTP_OK) { 
+				BufferedReader in = new BufferedReader(new InputStreamReader(
+						con.getInputStream()));
+				String inputLine;	
+				StringBuffer response = new StringBuffer();
+				while((inputLine = in.readLine()) != null) {
+					listResult.add(inputLine);
+					
+				}
+			in.close();
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();	
+		}
+		return listResult;
 	}
 	
 	private static void sendGET() throws IOException {

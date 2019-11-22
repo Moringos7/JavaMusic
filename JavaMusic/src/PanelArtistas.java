@@ -18,7 +18,8 @@ public class PanelArtistas extends JPanel{
 	private LinkedList<Image>imagenes;
 	private LinkedList<Artista>artistas;
 	private Connection coneccion;
-	public PanelArtistas(Font fuente) {
+	private VentanaJavaMusic ventana;
+	public PanelArtistas(Font fuente, VentanaJavaMusic ventana) {
 		super();
 		this.setPreferredSize(new Dimension(1000,800));
 		this.setLayout(null);
@@ -26,6 +27,7 @@ public class PanelArtistas extends JPanel{
 		this.fuente=fuente.deriveFont(20f);
 		this.coneccion=new Connection();
 		this.imagenes=new LinkedList<>();
+		this.ventana=ventana;
 		try {
 			this.artistas=coneccion.getArtistas();
 		}catch(IOException ex) {
@@ -57,7 +59,17 @@ public class PanelArtistas extends JPanel{
 			nuevoBoton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					
+					Playlist<Cancion> playlist=null;
+					try {
+						playlist=coneccion.getCancionesArtista(artista.getId());
+						playlist.setTitulo(artista.getNombre());
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					PanelLista pl=new PanelLista(playlist,fuente,ventana.getPanelReproduccion());
+					pl.setImagen(artista.getImg());
+					ventana.setPanelActual(pl);
 				}
 				
 			});

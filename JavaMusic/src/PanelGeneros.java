@@ -18,7 +18,8 @@ public class PanelGeneros extends JPanel {
 	private LinkedList<Image> imagenes;
 	private LinkedList<Genero> generos;
 	private Connection coneccion;
-	public PanelGeneros(Font fuente) {
+	private VentanaJavaMusic ventana;
+	public PanelGeneros(Font fuente,VentanaJavaMusic ventana) {
 		super();
 		this.setPreferredSize(new Dimension(1000,800));
 		this.setLayout(null);
@@ -26,6 +27,7 @@ public class PanelGeneros extends JPanel {
 		this.fuente=fuente.deriveFont(20f);
 		this.imagenes= new LinkedList<>();
 		this.coneccion=new Connection();
+		this.ventana=ventana;
 		try {
 			this.generos=coneccion.getGeneros();
 		}catch(IOException ex) {
@@ -57,7 +59,17 @@ public class PanelGeneros extends JPanel {
 			nuevoBoton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					
+					Playlist<Cancion> playlist=null;
+					try {
+						playlist=coneccion.getCancionesGenero(genero.getId());
+						playlist.setTitulo(genero.getNombre());
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					PanelLista pl=new PanelLista(playlist,fuente,ventana.getPanelReproduccion());
+					pl.setImagen(genero.getImg());
+					ventana.setPanelActual(pl);
 				}
 				
 			});

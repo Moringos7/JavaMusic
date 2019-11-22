@@ -41,6 +41,7 @@ public class PanelLista extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				Playlist<Cancion>nuevaPlaylist=playlist.getRandom();
 				pr.setPlaylist(nuevaPlaylist);
+				pr.getPlaylist().resetIterador();
 				pr.setCancionActual(pr.getPlaylist().First());
 				pr.setReproductor(new Reproductor(nuevaPlaylist));
 				
@@ -53,6 +54,7 @@ public class PanelLista extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				pr.setPlaylist(playlist);
+				pr.getPlaylist().resetIterador();
 				pr.setCancionActual(pr.getPlaylist().First());
 				pr.setReproductor(reproductor);
 			}

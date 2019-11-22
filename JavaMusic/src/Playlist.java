@@ -101,7 +101,7 @@ public class Playlist<T> implements ListIterator<T>{
 	}
 	
 	public void resetIterador() {
-		this.size = 0;
+		this.pos = 0;
 		this.currentG = null;
 	}
 	

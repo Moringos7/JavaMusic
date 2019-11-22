@@ -75,12 +75,11 @@ public class PanelAlbumes extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					PanelLista pl=new PanelLista(playlist,fuente);
+					PanelLista pl=new PanelLista(playlist,fuente,ventana.getPanelReproduccion());
 					ventana.setPanelActual(pl);
 					
 					
 				}
-				
 			});
 			nuevoBoton.setBounds(xbtn, ybtn, 100, 25);
 			xbtn+=200;

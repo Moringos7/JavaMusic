@@ -22,6 +22,7 @@ public class Reproductor extends Thread {
     private Queue<Cancion> cola;
     private LinkedList<String> Ids;
     private Cancion actualCancion;
+    private boolean reproduciendo;
    
     public Reproductor(Cancion song){
     	this.playlist = new Playlist<Cancion>();
@@ -33,6 +34,7 @@ public class Reproductor extends Thread {
     	this.playlist = playlist;
     	this.cola = new LinkedList<Cancion>(); 
     	this.prepareSong(playlist.next());
+    	
     }
     
     private void prepareSong(Cancion cancion){
@@ -56,7 +58,7 @@ public class Reproductor extends Thread {
         }
     }
     
-    private Cancion getActualCancion(){
+    public Cancion getActualCancion(){
     	return actualCancion;
     }
         
@@ -67,8 +69,9 @@ public class Reproductor extends Thread {
     
   ///Metodo de hilo
     public void run() {
-    	this.play();
+    	//this.play();
     	while(!this.cola.isEmpty()) {
+    		this.play();
     		while(this.sound.isOpen()) {
         		if(pause) {
         			pause();
@@ -79,17 +82,19 @@ public class Reproductor extends Thread {
                     e.printStackTrace();
                 }
         	}
+    		this.nextSong();
     	}
     }
     
     public void play(){
         this.sound.start();
+        
     }
     public void pause() {
     	this.sound.stop();
     }
     public void nextSong() {
-    	this.pause();
+    	this.stopMusic();
     	if(!cola.isEmpty()) {
     		this.prepareSong(this.cola.poll());
     	}else {
@@ -103,7 +108,7 @@ public class Reproductor extends Thread {
     	
     }
     public void previousSong() {
-    	this.pause();
+    	this.stopMusic();
     	
 		if(this.playlist.hasPrevious()) {
     		this.prepareSong(this.playlist.previous());

@@ -71,9 +71,49 @@ public class Playlist<T> implements ListIterator<T>{
 		return (Cancion) current.getCancion();
 	}
 	
-	public static void main (String arg[]) {
+	public Playlist<Cancion> getRandom(){
+		Playlist<Cancion> newList = new Playlist<Cancion>();
+		Cancion[] newArr = new Cancion[this.size];
+		//NodoP<Cancion> nodoTemp = this.currentG;
+		//this.currentG = this.first;
+		int i = 0;
+		while(this.hasNext()) {
+			Cancion cancion = (Cancion)this.next();
+			System.out.println(cancion.getId());
+			newArr[i] =  new Cancion(cancion.getId(),
+									 cancion.getTitulo(),
+									 cancion.getDuracion(),
+									 cancion.getImg(),
+									 cancion.getArtista());
+			i++;
+		}
+		/*
+		for(int j = 0; j < newArr.length;i++) {
+			System.out.println(newArr[j].getId());
+		}*/
 		
-		Playlist<Cancion> play =  null;
+		
+		
+		int j = 9;
+		//while(this.size != newArr.length) {
+		/*while(j != 0) {
+			int x = (int)(Math.floor((Math.random()*(0-j)+j)));
+			System.out.println(x);
+			
+		}*/
+		return newList;
+	}
+	
+	
+	public static void main (String arg[]) {
+		Playlist<Cancion> playlist = new Playlist<Cancion>();
+		for (int i = 0; i < 10; i++) {
+			Cancion C = new Cancion(""+i);
+			playlist.addLast(C);
+			//System.out.print((int)(Math.floor((Math.random()*(0-2)+2)))+",");
+		}
+		playlist.getRandom();
+		/*Playlist<Cancion> play =  null;
 		try {
 			play = new Connection().getCancionesArtista("1");
 		} catch (IOException e) {
@@ -83,7 +123,8 @@ public class Playlist<T> implements ListIterator<T>{
 			play.next();
 			System.out.println(play.previous());
 			System.out.println(play.pos);
-		}
+		}*/
+		
 		
 		
 	}
@@ -120,50 +161,8 @@ public class Playlist<T> implements ListIterator<T>{
 		}
 		public void setPrevious(NodoP previous) {
 			this.previous = previous;
-		}
-		
-		
+		}	
 	}
-
-	/*@Override
-	public listIterator<T> listIterator() {
-		// TODO Auto-generated method stub
-		return new Iterator<T>() {
-			int pos = 0;
-			NodoP current = first;
-			@Override
-			public boolean hasNext() {
-				return pos<size;
-			}
-
-			@Override
-			public T next() {
-				if(this.hasNext()) {
-					NodoP temp = current;
-					current = current.next;
-					pos++;
-					return (T)temp.getCancion();
-				}else {
-					throw new  IllegalStateException("No más elementos");
-				}
-			}
-			public T previous() {
-				if(this.hasPrevious()) {
-					NodoP temp = current;
-					current = current.previous;
-					pos--;
-					return (T)temp.getCancion();
-				}else {
-					throw new  IllegalStateException("No más elementos");
-				}
-			}
-			
-			public boolean hasPrevious() {
-				return pos>0;
-			}
-		};
-	}
-	*/
 	@Override
 	public boolean hasNext() {
 		return pos < size;
@@ -180,9 +179,8 @@ public class Playlist<T> implements ListIterator<T>{
 				currentG = first;
 			}else {
 				currentG = currentG.next;
-				pos++;
 			}
-			
+			pos++;
 			return (T)currentG.getCancion();
 		}else {
 			throw new  IllegalStateException("No más elementosN");

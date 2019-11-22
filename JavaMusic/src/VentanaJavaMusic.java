@@ -22,7 +22,7 @@ public class VentanaJavaMusic extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setSize(1000,650);
 		try {
-			//this.fuente=Font.createFont(Font.TRUETYPE_FONT, new File("CircularStd-Black.otf")).deriveFont(60f);
+			this.fuente=Font.createFont(Font.TRUETYPE_FONT, new File("CircularStd-Black.otf")).deriveFont(60f);
 			GraphicsEnvironment ge= GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge.registerFont(fuente);
 		}catch(IOException ex) {

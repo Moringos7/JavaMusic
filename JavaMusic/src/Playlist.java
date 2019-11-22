@@ -96,6 +96,11 @@ public class Playlist<T> implements ListIterator<T>{
 		return newList;
 	}
 	
+	public void resetIterador() {
+		this.size = 0;
+		this.currentG = null;
+	}
+	
 	
 	public static void main (String arg[]) {
 		

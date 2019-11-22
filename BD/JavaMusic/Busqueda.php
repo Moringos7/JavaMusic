@@ -22,12 +22,7 @@
             echo "\n";
             $canciones = true;
         }
-
-        if(!$canciones){
-            echo"&\n";
-        }else{
-            echo"---\n";
-        }
+        echo"---\n";
         //Artistas
         $select1 = "SELECT * FROM artista WHERE Nombre LIKE '$param%'";
         $resultado1 = mysqli_query($conexion,$select1);
@@ -38,11 +33,7 @@
             echo "\n";
             $artistas = true;
         }
-        if(!$artistas){
-            echo"&\n";
-        }else{
-            echo"---\n";
-        }
+        echo"---\n";
         //Album
         $select2 = "SELECT DISTINCT c.FkAlbum AS Id, 
         (SELECT Titulo FROM album WHERE Id = c.FkAlbum) as Titulo, 
@@ -59,12 +50,9 @@
             echo "\n";
             $album = true;
         }
+        echo"---\n";
         mysqli_close($conexion);
-        if(!$album){
-            echo"&\n";
-        }else{
-            echo"---\n";
-        }
+        
      }else{
          echo "#";
      }

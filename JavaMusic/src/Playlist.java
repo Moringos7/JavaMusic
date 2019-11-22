@@ -98,31 +98,6 @@ public class Playlist<T> implements ListIterator<T>{
 	
 	
 	public static void main (String arg[]) {
-		Playlist<Cancion> playlist = new Playlist<Cancion>();
-		for (int i = 0; i < 10; i++) {
-			Cancion C = new Cancion(""+i);
-			playlist.addLast(C);
-			//System.out.print((int)(Math.floor((Math.random()*(0-2)+2)))+",");
-		}
-		Playlist<Cancion> play = playlist.getRandom();
-		
-		while(play.hasNext()) {
-			System.out.println(play.next().getId());
-		}
-		
-		/*Playlist<Cancion> play =  null;
-		try {
-			play = new Connection().getCancionesArtista("1");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			play.next();
-			System.out.println(play.previous());
-			System.out.println(play.pos);
-		}*/
-		
-		
 		
 	}
 	

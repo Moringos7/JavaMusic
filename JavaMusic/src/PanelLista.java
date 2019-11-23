@@ -34,6 +34,7 @@ public class PanelLista extends JPanel{
 		this.playlist=playlist;
 		this.canciones=new LinkedList<>();
 		this.reproductor=new Reproductor(this.playlist);
+		this.reproductor.start();
 		this.imagen=new ImageIcon(playlist.First().getImg()).getImage();
 		this.btnRandom=new JButton("Aleatorio");
 		this.btnRandom.addActionListener(new ActionListener() {
@@ -42,7 +43,7 @@ public class PanelLista extends JPanel{
 				Playlist<Cancion>nuevaPlaylist=playlist.getRandom();
 				pr.setPlaylist(nuevaPlaylist);
 				pr.getPlaylist().resetIterador();
-				pr.setCancionActual(pr.getPlaylist().First());
+				pr.setCancionActual(reproductor.getActualCancion());
 				pr.setReproductor(new Reproductor(nuevaPlaylist));
 				
 			}
@@ -55,7 +56,7 @@ public class PanelLista extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				pr.setPlaylist(playlist);
 				pr.getPlaylist().resetIterador();
-				pr.setCancionActual(pr.getPlaylist().First());
+				pr.setCancionActual(playlist.next());
 				pr.setReproductor(reproductor);
 			}
 			
@@ -113,6 +114,7 @@ public class PanelLista extends JPanel{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					pr.setPlaylist(new Playlist<Cancion>());
+					pr.getReproductor().closeThread();
 					pr.setReproductor(new Reproductor(cancion));
 					pr.setCancionActual(cancion);
 

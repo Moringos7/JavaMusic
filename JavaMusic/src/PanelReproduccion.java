@@ -158,20 +158,19 @@ public class PanelReproduccion extends JPanel{
 		this.repaint();
 	}
 	public void setReproductor(Reproductor reproductor) {
-		if(this.reproduciendo) {
-			this.reproductor.stopMusic();
-		}
+		
 		this.reproductor=reproductor;
 		this.reproductor.play();
 		if(this.timer.isRunning()) {
 			this.timer.stop();
 		}
 		this.xb=0;
-		this.timer.start();
-		this.reproduciendo=true;
+		//this.timer.start();
 		
 	}
-	
+	public Reproductor getReproductor() {
+		return this.reproductor;
+	}
 	public void setPlaylist(Playlist<Cancion> playlist) {
 		this.playlist=playlist;
 	}

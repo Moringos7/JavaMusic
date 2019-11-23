@@ -13,7 +13,15 @@ public class Pruebas {
 		reproductor = new Reproductor(canciones);
 		reproductor.closeThread();
 		reproductor.start();
+		reproductor.suspend();
+		try {
+            Thread.sleep(5000);//Cancion 1
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 		
+		reproductor.resume();
+	
 		reproductor.play();
 		
 		System.out.println(reproductor.getActualCancion());

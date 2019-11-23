@@ -85,12 +85,12 @@ public class Reproductor extends Thread {
 		            } catch (InterruptedException e) {
 		                e.printStackTrace();
 		            }
-		    		//System.out.println(this.sound.getFrameLength() +"|||"+ this.sound.getFramePosition());
+		    		System.out.println(this.sound.getFrameLength() +"|||"+ this.sound.getFramePosition());
 		    	}
 				
-				//System.out.println("Desactivado");
+				System.out.println("Desactivado");
     		}
-    		//System.out.println("No Song");
+    		System.out.println("No Song");
     		try {
                 Thread.sleep(200);
             } catch (InterruptedException e) {
@@ -100,7 +100,7 @@ public class Reproductor extends Thread {
     }
     public void closeThread() {
     	this.sound.setFramePosition(this.sound.getFrameLength());
-    	this.isOn = false;
+    	//this.isOn = false;
     }
     public void play(){
     	this.sound.start();

@@ -163,6 +163,7 @@ public class PanelReproduccion extends JPanel{
 			this.timer.stop();
 		}
 		this.xb=0;
+		
 		this.timer.start();
 		
 	}

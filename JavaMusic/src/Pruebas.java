@@ -11,6 +11,7 @@ public class Pruebas {
 		canciones.addLast(new Cancion("2"));
 		canciones.addLast(new Cancion("3"));
 		reproductor = new Reproductor(canciones);
+		reproductor.closeThread();
 		reproductor.start();
 		
 		reproductor.play();

@@ -25,6 +25,11 @@ public class Reproductor extends Thread {
     private boolean reproduciendo,
     				isOn;
    
+    public Reproductor() {
+    	this.playlist = new Playlist<Cancion>();
+    	this.cola = new LinkedList<Cancion>();
+    	this.isOn = true;
+    }
     public Reproductor(Cancion song){
     	this.playlist = new Playlist<Cancion>();
     	this.cola = new LinkedList<Cancion>();

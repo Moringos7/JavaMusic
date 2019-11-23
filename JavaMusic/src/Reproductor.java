@@ -84,6 +84,7 @@ public class Reproductor extends Thread {
 		    		System.out.println(this.sound.getFrameLength() +"|||"+ this.sound.getFramePosition());
 		    	}
 				System.out.println("Desactivado");
+				this.nextSong();
     		}
     		System.out.println("No Song");
     		try {

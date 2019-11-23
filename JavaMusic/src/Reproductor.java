@@ -72,7 +72,6 @@ public class Reproductor extends Thread {
     
   ///Metodo de hilo
     public void run() {
-    	this.sound.start();
     	while(isOn){
     		if(this.sound.isActive()) {
 				while(this.sound.getFrameLength() != this.sound.getFramePosition()){

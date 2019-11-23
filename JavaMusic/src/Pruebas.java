@@ -7,9 +7,9 @@ public class Pruebas {
 		Playlist<Cancion> canciones = new Playlist<Cancion>();
 		Connection conect = new Connection();
 		Reproductor reproductor = null;
-		canciones.addLast(new Cancion("997"));
-		canciones.addLast(new Cancion("998"));
-		canciones.addLast(new Cancion("999"));
+		canciones.addLast(new Cancion("1"));
+		canciones.addLast(new Cancion("2"));
+		canciones.addLast(new Cancion("3"));
 		reproductor = new Reproductor(canciones);
 		reproductor.start();
 		reproductor.play();

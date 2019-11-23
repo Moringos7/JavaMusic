@@ -28,6 +28,7 @@ public class PanelReproduccion extends JPanel{
 	private int xb;
 	private JProgressBar p;
 	private Timer timer;
+	private boolean reproduciendo;
 	public PanelReproduccion(Font fuente) {
 		super();
 		this.setPreferredSize(new Dimension(850,100));
@@ -157,12 +158,17 @@ public class PanelReproduccion extends JPanel{
 		this.repaint();
 	}
 	public void setReproductor(Reproductor reproductor) {
+		if(this.reproduciendo) {
+			this.reproductor.stopMusic();
+		}
 		this.reproductor=reproductor;
 		if(this.timer.isRunning()) {
 			this.timer.stop();
 		}
 		this.xb=0;
 		this.timer.start();
+		this.reproductor.play();
+		this.reproduciendo=true;
 		
 	}
 	

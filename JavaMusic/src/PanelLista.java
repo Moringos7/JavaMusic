@@ -25,13 +25,11 @@ public class PanelLista extends JPanel{
 	private PanelReproduccion pr;
 	private JLabel labelTitulo;
 	private LinkedList<JLabel>canciones;
-	private boolean singularSong;
 	
 	public PanelLista(Playlist<Cancion> playlist, Font fuente, PanelReproduccion pr) {
 		super();
 		this.setPreferredSize(new Dimension(1000,1000));
 		this.pr=pr;
-		this.singularSong=false;
 		this.setLayout(null);
 		this.playlist=playlist;
 		this.canciones=new LinkedList<>();
@@ -44,8 +42,9 @@ public class PanelLista extends JPanel{
 				Playlist<Cancion>nuevaPlaylist=playlist.getRandom();
 				pr.setPlaylist(nuevaPlaylist);
 				pr.getPlaylist().resetIterador();
-				pr.setCancionActual(pr.getPlaylist().First());
+				pr.setCancionActual(pr.getPlaylist().next());
 				pr.setReproductor(new Reproductor(nuevaPlaylist));
+				
 			}
 			
 		});
@@ -56,9 +55,8 @@ public class PanelLista extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				pr.setPlaylist(playlist);
 				pr.getPlaylist().resetIterador();
-				pr.setCancionActual(pr.getPlaylist().First());
+				pr.setCancionActual(pr.getPlaylist().next());
 				pr.setReproductor(reproductor);
-			
 			}
 			
 		});
@@ -117,6 +115,7 @@ public class PanelLista extends JPanel{
 					pr.setPlaylist(new Playlist<Cancion>());
 					pr.setReproductor(new Reproductor(cancion));
 					pr.setCancionActual(cancion);
+
 				}
 				
 			});

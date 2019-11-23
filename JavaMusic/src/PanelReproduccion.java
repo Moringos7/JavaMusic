@@ -27,7 +27,6 @@ public class PanelReproduccion extends JPanel{
 	private boolean mover;
 	private int xb;
 	private JProgressBar p;
-	private boolean reproduciendo;
 	private Timer timer;
 	public PanelReproduccion(Font fuente) {
 		super();
@@ -35,6 +34,7 @@ public class PanelReproduccion extends JPanel{
 		this.setLayout(null);
 		this.setBackground(Color.DARK_GRAY);
 		this.fuente=fuente.deriveFont(17f);
+		this.reproductor=new Reproductor();
 		this.labelTitulo=new JLabel();
 		this.labelTitulo.setFont(this.fuente);
 		this.labelTitulo.setBackground(Color.BLUE);
@@ -158,14 +158,12 @@ public class PanelReproduccion extends JPanel{
 		this.repaint();
 	}
 	public void setReproductor(Reproductor reproductor) {
-		
 		this.reproductor=reproductor;
-		this.reproductor.play();
 		if(this.timer.isRunning()) {
 			this.timer.stop();
 		}
 		this.xb=0;
-		//this.timer.start();
+		this.timer.start();
 		
 	}
 	public Reproductor getReproductor() {

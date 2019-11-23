@@ -25,16 +25,17 @@ public class PanelLista extends JPanel{
 	private PanelReproduccion pr;
 	private JLabel labelTitulo;
 	private LinkedList<JLabel>canciones;
+	private boolean singularSong;
 	
 	public PanelLista(Playlist<Cancion> playlist, Font fuente, PanelReproduccion pr) {
 		super();
 		this.setPreferredSize(new Dimension(1000,1000));
 		this.pr=pr;
+		this.singularSong=false;
 		this.setLayout(null);
 		this.playlist=playlist;
 		this.canciones=new LinkedList<>();
 		this.reproductor=new Reproductor(this.playlist);
-		this.reproductor.start();
 		this.imagen=new ImageIcon(playlist.First().getImg()).getImage();
 		this.btnRandom=new JButton("Aleatorio");
 		this.btnRandom.addActionListener(new ActionListener() {
@@ -43,9 +44,10 @@ public class PanelLista extends JPanel{
 				Playlist<Cancion>nuevaPlaylist=playlist.getRandom();
 				pr.setPlaylist(nuevaPlaylist);
 				pr.getPlaylist().resetIterador();
-				pr.setCancionActual(reproductor.getActualCancion());
 				pr.setReproductor(new Reproductor(nuevaPlaylist));
-				
+				pr.setCancionActual(pr.getReproductor().getActualCancion());
+				pr.getReproductor().start();
+				pr.getReproductor().play();
 			}
 			
 		});
@@ -54,10 +56,17 @@ public class PanelLista extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(singularSong) {
+					pr.getReproductor().closeThread();
+					singularSong=false;
+				}
 				pr.setPlaylist(playlist);
 				pr.getPlaylist().resetIterador();
 				pr.setCancionActual(playlist.next());
 				pr.setReproductor(reproductor);
+				pr.getReproductor().start();
+				pr.getReproductor().play();
+				
 			}
 			
 		});
@@ -113,11 +122,15 @@ public class PanelLista extends JPanel{
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					if(singularSong==false) {
+						pr.getReproductor().closeThread();
+					}
 					pr.setPlaylist(new Playlist<Cancion>());
-					pr.getReproductor().closeThread();
 					pr.setReproductor(new Reproductor(cancion));
+					pr.getReproductor().start();
+					pr.getReproductor().play();
 					pr.setCancionActual(cancion);
-
+					singularSong=true;
 				}
 				
 			});

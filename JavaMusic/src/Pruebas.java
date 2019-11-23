@@ -4,62 +4,49 @@ import java.util.LinkedList;
 
 public class Pruebas {
 	public static void main(String args[]) {
-		LinkedList<Cancion> canciones = new LinkedList<Cancion>();
+		Playlist<Cancion> canciones = new Playlist<Cancion>();
 		Connection conect = new Connection();
 		Reproductor reproductor = null;
-		try {
-			reproductor = new Reproductor(conect.getCancionesArtista("1"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}finally {
-			reproductor.play();
-		}
-		try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-		reproductor.pause();
-		try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+		canciones.addLast(new Cancion("1"));
+		canciones.addLast(new Cancion("2"));
+		canciones.addLast(new Cancion("3"));
+		reproductor = new Reproductor(canciones);
+		reproductor.start();
 		reproductor.play();
+		
 		try {
-            Thread.sleep(5000);
+            Thread.sleep(3000);//Cancion 1
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+		
+		reproductor.nextSong();
+		try {
+            Thread.sleep(3000);//Cancion 2
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+		
+		reproductor.previousSong();
+		
+		try {
+            Thread.sleep(3000);//Cancion 1
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 		reproductor.nextSong();
 		try {
-            Thread.sleep(10000);
+            Thread.sleep(3000);//Cancion 2
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 		reproductor.nextSong();
-		try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-		reproductor.previousSong();
-		try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-		reproductor.previousSong();
-		try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-		/*Iterator<Cancion> song = canciones.iterator();
-		while(song.hasNext()) {
-			System.out.println(song.next());
-		}*/
 		
-		
+		try {
+            Thread.sleep(3000);//Cancion 3
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+		reproductor.closeThread();
 	}
 }

@@ -81,12 +81,12 @@ public class Reproductor extends Thread {
 		            } catch (InterruptedException e) {
 		                e.printStackTrace();
 		            }
-		    		System.out.println(this.sound.getFrameLength() +"|||"+ this.sound.getFramePosition());
+		    		//System.out.println(this.sound.getFrameLength() +"|||"+ this.sound.getFramePosition());
 		    	}
-				System.out.println("Desactivado");
+				//System.out.println("Desactivado");
 				this.nextSong();
     		}
-    		System.out.println("No Song");
+    		//System.out.println("No Song");
     		try {
                 Thread.sleep(200);
             } catch (InterruptedException e) {

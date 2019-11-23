@@ -44,6 +44,10 @@ public class PanelLista extends JPanel{
 				Playlist<Cancion>nuevaPlaylist=playlist.getRandom();
 				pr.setPlaylist(nuevaPlaylist);
 				pr.getPlaylist().resetIterador();
+<<<<<<< HEAD
+=======
+				pr.setCancionActual(pr.getPlaylist().First());
+>>>>>>> f9747001f6869d656efbd231e63a6c923069c4fe
 				pr.setReproductor(new Reproductor(nuevaPlaylist));
 				pr.setCancionActual(pr.getReproductor().getActualCancion());
 				pr.getReproductor().start();
@@ -62,7 +66,7 @@ public class PanelLista extends JPanel{
 				}
 				pr.setPlaylist(playlist);
 				pr.getPlaylist().resetIterador();
-				pr.setCancionActual(playlist.next());
+				pr.setCancionActual(pr.getPlaylist().First());
 				pr.setReproductor(reproductor);
 				pr.getReproductor().start();
 				pr.getReproductor().play();

@@ -4,41 +4,62 @@ import java.util.LinkedList;
 
 public class Pruebas {
 	public static void main(String args[]) {
-		Playlist<Cancion> canciones = new Playlist<Cancion>();
+		LinkedList<Cancion> canciones = new LinkedList<Cancion>();
 		Connection conect = new Connection();
 		Reproductor reproductor = null;
-		canciones.addLast(new Cancion("1"));
-		canciones.addLast(new Cancion("2"));
-		canciones.addLast(new Cancion("3"));
-		reproductor = new Reproductor(canciones);
-		reproductor.closeThread();
-		reproductor.start();
-		
+		try {
+			reproductor = new Reproductor(conect.getCancionesArtista("1"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			reproductor.play();
+		}
+		try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+		reproductor.pause();
+		try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 		reproductor.play();
-		
-		System.out.println(reproductor.getActualCancion());
 		try {
-            Thread.sleep(5000);//Cancion 1
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-		
 		reproductor.nextSong();
-		System.out.println(reproductor.getActualCancion());
-		
 		try {
-            Thread.sleep(5000);//Cancion 2
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-		
 		reproductor.nextSong();
-		System.out.println(reproductor.getActualCancion());
-		
 		try {
-            Thread.sleep(5000);//Cancion 3
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+		reproductor.previousSong();
+		try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+		reproductor.previousSong();
+		try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+		/*Iterator<Cancion> song = canciones.iterator();
+		while(song.hasNext()) {
+			System.out.println(song.next());
+		}*/
+		
+		
 	}
 }

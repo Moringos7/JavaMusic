@@ -23,7 +23,7 @@ public class PanelOpciones extends JPanel{
 		this.btnInicio=new JButton("Inicio");
 		this.btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PanelInicio pi=new PanelInicio(fuente,ventana);
+				PanelInicio pi=new PanelInicio(fuente);
 				ventana.setPanelActual(pi);
 				setPanelActual(pi);
 			}

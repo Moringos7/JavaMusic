@@ -22,26 +22,18 @@ public class Reproductor extends Thread {
     private Queue<Cancion> cola;
     private LinkedList<String> Ids;
     private Cancion actualCancion;
-    private boolean reproduciendo,
-    				isOn;
+    private boolean reproduciendo;
    
-    public Reproductor() {
-    	this.playlist = new Playlist<Cancion>();
-    	this.cola = new LinkedList<Cancion>();
-    	this.isOn = true;
-    }
     public Reproductor(Cancion song){
     	this.playlist = new Playlist<Cancion>();
     	this.cola = new LinkedList<Cancion>();
     	this.cola.add(song);
     	prepareSong(song);
-    	this.isOn = true;
     }
     public Reproductor(Playlist<Cancion> playlist) {
     	this.playlist = playlist;
     	this.cola = new LinkedList<Cancion>(); 
     	this.prepareSong(playlist.next());
-    	this.isOn = true;
     	
     }
     
@@ -77,6 +69,7 @@ public class Reproductor extends Thread {
     
   ///Metodo de hilo
     public void run() {
+<<<<<<< HEAD
     	while(isOn){
     		if(this.sound.isActive()) {
 				while(this.sound.getFrameLength() != this.sound.getFramePosition()){
@@ -96,14 +89,28 @@ public class Reproductor extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+=======
+    	//this.play();
+    	while(!this.cola.isEmpty()) {
+    		this.play();
+    		while(this.sound.isOpen()) {
+        		if(pause) {
+        			pause();
+        		}
+        		try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+        	}
+    		this.nextSong();
+>>>>>>> f9747001f6869d656efbd231e63a6c923069c4fe
     	}
     }
-    public void closeThread() {
-    	this.sound.setFramePosition(this.sound.getFrameLength());
-    	this.isOn = false;
-    }
+    
     public void play(){
-    	this.sound.start();
+        this.sound.start();
+        
     }
     public void pause() {
     	this.sound.stop();
@@ -119,7 +126,8 @@ public class Reproductor extends Thread {
         		//Verificar regresar al final
         	}
     	}
-    	this.play();
+    	this.sound.start();
+    	
     }
     public void previousSong() {
     	this.stopMusic();

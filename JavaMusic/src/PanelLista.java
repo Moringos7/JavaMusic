@@ -44,14 +44,8 @@ public class PanelLista extends JPanel{
 				Playlist<Cancion>nuevaPlaylist=playlist.getRandom();
 				pr.setPlaylist(nuevaPlaylist);
 				pr.getPlaylist().resetIterador();
-<<<<<<< HEAD
-=======
 				pr.setCancionActual(pr.getPlaylist().First());
->>>>>>> f9747001f6869d656efbd231e63a6c923069c4fe
 				pr.setReproductor(new Reproductor(nuevaPlaylist));
-				pr.setCancionActual(pr.getReproductor().getActualCancion());
-				pr.getReproductor().start();
-				pr.getReproductor().play();
 			}
 			
 		});
@@ -60,17 +54,11 @@ public class PanelLista extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(singularSong) {
-					pr.getReproductor().closeThread();
-					singularSong=false;
-				}
 				pr.setPlaylist(playlist);
 				pr.getPlaylist().resetIterador();
 				pr.setCancionActual(pr.getPlaylist().First());
 				pr.setReproductor(reproductor);
-				pr.getReproductor().start();
-				pr.getReproductor().play();
-				
+			
 			}
 			
 		});
@@ -126,15 +114,9 @@ public class PanelLista extends JPanel{
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					if(singularSong==false) {
-						pr.getReproductor().closeThread();
-					}
 					pr.setPlaylist(new Playlist<Cancion>());
 					pr.setReproductor(new Reproductor(cancion));
-					pr.getReproductor().start();
-					pr.getReproductor().play();
 					pr.setCancionActual(cancion);
-					singularSong=true;
 				}
 				
 			});

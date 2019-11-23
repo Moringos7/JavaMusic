@@ -34,7 +34,6 @@ public class PanelReproduccion extends JPanel{
 		this.setLayout(null);
 		this.setBackground(Color.DARK_GRAY);
 		this.fuente=fuente.deriveFont(17f);
-		this.reproductor=new Reproductor();
 		this.labelTitulo=new JLabel();
 		this.labelTitulo.setFont(this.fuente);
 		this.labelTitulo.setBackground(Color.BLUE);
@@ -158,24 +157,12 @@ public class PanelReproduccion extends JPanel{
 		this.repaint();
 	}
 	public void setReproductor(Reproductor reproductor) {
-<<<<<<< HEAD
-=======
-		if(this.reproduciendo) {
-			this.reproductor.stopMusic();
-		}
->>>>>>> f9747001f6869d656efbd231e63a6c923069c4fe
 		this.reproductor=reproductor;
 		if(this.timer.isRunning()) {
 			this.timer.stop();
 		}
 		this.xb=0;
-<<<<<<< HEAD
-		
 		this.timer.start();
-=======
-		this.timer.start();
-		this.reproduciendo=true;
->>>>>>> f9747001f6869d656efbd231e63a6c923069c4fe
 		
 	}
 	

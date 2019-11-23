@@ -69,27 +69,7 @@ public class Reproductor extends Thread {
     
   ///Metodo de hilo
     public void run() {
-<<<<<<< HEAD
-    	while(isOn){
-    		if(this.sound.isActive()) {
-				while(this.sound.getFrameLength() != this.sound.getFramePosition()){
-		    		try {
-		                Thread.sleep(200);
-		            } catch (InterruptedException e) {
-		                e.printStackTrace();
-		            }
-		    		System.out.println(this.sound.getFrameLength() +"|||"+ this.sound.getFramePosition());
-		    	}
-				
-				System.out.println("Desactivado");
-    		}
-    		System.out.println("No Song");
-    		try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-=======
+
     	//this.play();
     	while(!this.cola.isEmpty()) {
     		this.play();
@@ -104,7 +84,6 @@ public class Reproductor extends Thread {
                 }
         	}
     		this.nextSong();
->>>>>>> f9747001f6869d656efbd231e63a6c923069c4fe
     	}
     }
     

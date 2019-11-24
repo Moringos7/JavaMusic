@@ -36,6 +36,8 @@ public class PanelLista extends JPanel{
 		this.reproductor=new Reproductor(this.playlist);
 		this.imagen=new ImageIcon(playlist.First().getImg()).getImage();
 		this.btnRandom=new JButton("Aleatorio");
+		
+		//Boton de Random
 		this.btnRandom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -48,10 +50,12 @@ public class PanelLista extends JPanel{
 			}
 			
 		});
+		//Botón de Reproduccion
 		this.btnOrden=new JButton("Reproducir");
 		this.btnOrden.addActionListener(new ActionListener() {
 
 			@Override
+			//
 			public void actionPerformed(ActionEvent e) {
 				pr.setPlaylist(playlist);
 				pr.getPlaylist().resetIterador();

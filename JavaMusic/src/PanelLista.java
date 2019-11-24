@@ -16,9 +16,7 @@ import javax.swing.JPanel;
 public class PanelLista extends JPanel{
 	private Playlist<Cancion> playlist;
 	private JButton btnRandom,
-					btnOrden,
-					btnOpciones;
-	private JComboBox ordenador;
+					btnOrden;
 	private Image imagen;
 	private Font fuente;
 	private Reproductor reproductor;
@@ -42,7 +40,7 @@ public class PanelLista extends JPanel{
 				Playlist<Cancion>nuevaPlaylist=playlist.getRandom();
 				pr.setPlaylist(nuevaPlaylist);
 				pr.getPlaylist().resetIterador();
-				pr.setCancionActual(pr.getPlaylist().next());
+				pr.setCancionActual(pr.getPlaylist().First());
 				pr.setReproductor(new Reproductor(nuevaPlaylist));
 				
 			}
@@ -55,32 +53,15 @@ public class PanelLista extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				pr.setPlaylist(playlist);
 				pr.getPlaylist().resetIterador();
-				pr.setCancionActual(pr.getPlaylist().next());
-				pr.setReproductor(reproductor);
+				pr.setCancionActual(pr.getPlaylist().First());
+				pr.setReproductor(new Reproductor(playlist));
 			}
 			
-		});
-		this.btnOpciones=new JButton("Opciones");
-		this.btnOpciones.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});
-		this.ordenador=new JComboBox<>();
-		this.ordenador.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				
-			}
 		});
 		this.setBackground(Color.BLACK);
 		this.fuente=fuente.deriveFont(20f);
 		this.btnOrden.setBounds(325, 150, 100, 25);
 		this.btnRandom.setBounds(450,150,100,25);
-		this.btnOpciones.setBounds(575, 150, 100, 25);
 		this.labelTitulo=new JLabel(this.playlist.getTitulo());
 		this.labelTitulo.setFont(this.fuente.deriveFont(40f));
 		this.labelTitulo.setBackground(Color.BLUE);
@@ -125,7 +106,6 @@ public class PanelLista extends JPanel{
 		}
 		this.add(this.btnOrden);
 		this.add(this.btnRandom);
-		this.add(btnOpciones);
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

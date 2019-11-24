@@ -17,16 +17,23 @@ public class PanelInicio extends JPanel {
 	private JButton btnBuscar;
 	private Font bienvenida;
 	private JLabel labelBienvenida;
-	public PanelInicio(Font fuente) {
+	private VentanaJavaMusic ventana;
+	public PanelInicio(Font fuente, VentanaJavaMusic ventana) {
 		super();
 		this.setPreferredSize(new Dimension(1000,650));
 		this.setLayout(null);
 		this.setBackground(Color.BLACK);
+		this.ventana=ventana;
 		this.tfbuscador=new JTextField(10);
 		this.btnBuscar=new JButton("Buscar");
 		this.btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				if(!tfbuscador.getText().equals("")) {
+					Busqueda busqueda= new Busqueda();
+					busqueda.Busqueda(tfbuscador.getText());
+					PanelResultado pre=new PanelResultado(fuente,busqueda,ventana);
+					ventana.setPanelActual(pre);
+				}
 			}
 		});
 		

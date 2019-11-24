@@ -12,7 +12,6 @@ import javax.swing.JScrollPane;
 public class VentanaJavaMusic extends JFrame {
 	private JPanel panelGeneral;
 	private JPanel panelActual;
-	private JavaMusic app;
 	private Font fuente;
 	private JScrollPane scroll;
 	private PanelOpciones po;
@@ -32,7 +31,7 @@ public class VentanaJavaMusic extends JFrame {
 			ex.printStackTrace();
 		}
 		this.panelGeneral=new JPanel();
-		this.panelActual=new PanelInicio(this.fuente);
+		this.panelActual=new PanelInicio(this.fuente,this);
 		this.panelGeneral.add(this.panelActual);
 		this.pr=new PanelReproduccion(this.fuente);
 		this.add(this.pr,BorderLayout.SOUTH);

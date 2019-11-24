@@ -11,7 +11,6 @@ public class PanelOpciones extends JPanel{
 	private JButton btnInicio,
 					btnAlbumes,
 					btnArtistas,
-					btnPlaylists,
 					btnGeneros;
 	private JPanel panelActual;
 	private Font fuente;
@@ -23,7 +22,7 @@ public class PanelOpciones extends JPanel{
 		this.btnInicio=new JButton("Inicio");
 		this.btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PanelInicio pi=new PanelInicio(fuente);
+				PanelInicio pi=new PanelInicio(fuente,ventana);
 				ventana.setPanelActual(pi);
 				setPanelActual(pi);
 			}
@@ -44,14 +43,6 @@ public class PanelOpciones extends JPanel{
 				setPanelActual(par);
 			}
 		});
-		this.btnPlaylists=new JButton("Playlists");
-		this.btnPlaylists.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PanelPlaylists pp=new PanelPlaylists(fuente);
-				ventana.setPanelActual(pp);
-				setPanelActual(pp);
-			}
-		});
 		this.btnGeneros=new JButton("Generos");
 		this.btnGeneros.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -63,7 +54,6 @@ public class PanelOpciones extends JPanel{
 		this.add(this.btnInicio);
 		this.add(this.btnAlbumes);
 		this.add(this.btnArtistas);
-		this.add(this.btnPlaylists);
 		this.add(this.btnGeneros);
 	}
 	public void setPanelActual(JPanel panelActual) {

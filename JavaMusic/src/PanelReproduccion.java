@@ -122,7 +122,7 @@ public class PanelReproduccion extends JPanel{
 			}
 		});
 		this.btnMeGusta.setBounds(300, 20, 100, 25);
-		this.add(btnMeGusta);
+		//this.add(btnMeGusta);
 		this.btnPlay.setText("Pausa");
 		this.btnPlay.setBounds(420, 20, 100, 25);
 		this.add(this.btnPlay);

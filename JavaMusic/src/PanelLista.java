@@ -26,7 +26,7 @@ public class PanelLista extends JPanel{
 	
 	public PanelLista(Playlist<Cancion> playlist, Font fuente, PanelReproduccion pr) {
 		super();
-		this.setPreferredSize(new Dimension(1000,1000));
+		this.setPreferredSize(new Dimension(1000,2000));
 		this.pr=pr;
 		this.setLayout(null);
 		this.playlist=playlist;
